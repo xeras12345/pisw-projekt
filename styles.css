@@ -4,40 +4,139 @@ body {
 }
 
 header {
-	background: rgb(243,252,223);
-	max-height: 800px;
+	background: #eeeeee;
+	padding-bottom: 10px;
+	padding-top: 50px;
 }
 
 .responsiveImageHeader {
 	height: auto;
 	width: auto;
-	max-width: 32.7%;
+	max-width: 100%;
 	padding-left: 0%;
 	padding-right: 0%;
 }
 
-.responsiveImageLogo {
+.responsiveImageSocial {
 	height: auto;
 	width: auto;
-	max-width: 100%;
-	padding-left: 5%;
-	padding-right: 5%;
+	max-width: 20px;
+	padding-left: 0%;
+	padding-right: 0%;
+	margin: 2px;
 }
 
 nav {
-	background: #C1E880;
+	background: #eeeeee;
+	position: fixed;
+	top: 0;
+	width: 100%;
 }
 
 nav ul {
 	padding: 0;
 	margin: 0;
 	list-style-type: none;
+	float: right;
 }
 
 nav ul li {
-	text-align: center;
+	display: inline;
+	font-size: 90%;
+	text-align: right;
+	letter-spacing: 2px; 
 	margin: 0;
-	padding: 0;
+	padding: 10px;
+}
+
+section {
+	background: white;
+}
+
+.sectionTitle {
+	text-align: center;
+	font-size: 150%;
+	font-weight: bold;
+	letter-spacing: 2px;
+	margin-top: 60px;
+	margin-bottom: 60px;
+}
+
+#about .sectionTitle {
+	text-align: center;
+	font-size: 150%;
+	font-weight: bold;
+	letter-spacing: 2px;
+	margin-top: 60px;
+	margin-bottom: 30px;
+}
+
+.responsiveImageIcon {
+	height: auto;
+	width: auto;
+	max-width: 70px;
+	padding-left: 0%;
+	padding-right: 0%;
+	margin: 2px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.sectionTextBold {
+	text-align: center;
+	font-size: 100%;
+	font-weight: bold;
+	letter-spacing: 3px;
+	margin-top: 30px;
+}
+
+.sectionText {
+	text-align: center;
+	font-size: 100%;
+}
+
+.sectionIconText {
+	max-width: 240px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	letter-spacing: 1px;
+	
+}
+
+.responsiveImageDish {
+	height: auto;
+	width: auto;
+	max-width: 50%;
+	padding-left: 0%;
+	padding-right: 0%;
+	margin: 2px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.textMenu {
+	text-align: left;
+	letter-spacing: 1px;
+}
+
+#about {
+	background: #eeeeee;
+	margin-top: 60px;
+}
+
+.responsiveImageMap {
+	height: auto;
+	width: auto;
+	max-width: 70%;
+	padding-left: 0%;
+	padding-right: 0%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /*  SECTIONS  */
@@ -47,6 +146,12 @@ nav ul li {
 	padding-right: 5%;
 	margin: 0px;
 	max-width: 1600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+footer {
+	background: white;
 }
 
 /*  COLUMN SETUP  */
