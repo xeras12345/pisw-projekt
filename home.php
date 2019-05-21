@@ -114,7 +114,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction'])){
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
-                            $_SESSION["email"] = $email1;                            
+                            $_SESSION["email1"] = $email1;                            
                             
                             // Redirect user to welcome page
                             header("location: home_logged.php");
@@ -151,14 +151,16 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction'])){
 require_once "connect.php";
  
 // Define variables and initialize with empty values
-$email = $password = $confirm_password = "";
+$password = isset($_POST['password']) ? $_POST['password'] : '';
+$confirm_password = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
+$email = isset($_POST['email']) ? $_POST['email'] : '';
 $email_err = $password_err = $confirm_password_err = "";
- 
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username
-    if(empty(trim($_POST["email"]))){
+    if(empty(trim($email))){
         $email_err = "<p><font size='2' color='red'>Proszę wprowadzić adres email</font></p>";
     } else{
         // Prepare a select statement
@@ -191,7 +193,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Validate password
-    if(empty(trim($_POST["password"]))){
+    if(empty(trim($password))){
         $password_err = "<p><font size='2' color='red'>Proszę wprowadzić hasło</font></p>";     
     } elseif(strlen(trim($_POST["password"])) < 6){
         $password_err = "<p><font size='2' color='red'>Hasło musi mieć minimum 6 znaków</font></p>";
@@ -200,7 +202,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Validate confirm password
-    if(empty(trim($_POST["confirm_password"]))){
+    if(empty(trim($confirm_password))){
         $confirm_password_err = "<p><font size='2' color='red'>Proszę powtórzyć hasło</font></p>";     
     } else{
         $confirm_password = trim($_POST["confirm_password"]);
@@ -237,7 +239,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    mysqli_close($link);
+    
 }
 ?>
 <section>
@@ -252,11 +254,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <div class="container3">
             <div class="textbox <?php echo (!empty($email1_err)) ? 'has-error' : ''; ?>">
-                <input type="text" name="email1" placeholder="Email">
+                <input type="text" name="email1" placeholder="Email" required="required">
             </div>
             <?php echo $email1_err; ?>
             <div class="textbox <?php echo (!empty($password1_err)) ? 'has-error' : ''; ?>">
-                <input type="password" name="password1" class="form-control" placeholder="Hasło">
+                <input type="password" name="password1" class="form-control" placeholder="Hasło" required="required">
             </div>
             <?php echo $password1_err; ?></br>
              
@@ -285,15 +287,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <div class="container3">
             <div class="textbox">
-                <input type="text" name="email" placeholder="Email">
+                <input type="text" name="email" placeholder="Email" required="required">
             </div>
  
             <div class="textbox">
-                <input type="password" name="password" class="form-control" placeholder="Hasło">
+                <input type="password" name="password" class="form-control" placeholder="Hasło" required="required">
             </div>
         
             <div class="textbox">
-                <input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło">
+                <input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło" required="required">
             </div></br>
              
 

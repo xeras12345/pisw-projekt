@@ -14,3 +14,5 @@ window.onclick = function(event) {
         modal2.style.display = "none";
     }
 }
+
+
