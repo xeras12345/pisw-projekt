@@ -330,6 +330,38 @@ footer {
 	  overflow: auto;
 	  background-color: rgba(0,0,0,0.4);
   }
+
+  .modal5 {
+	display:block;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.4);
+}
+
+.modal7 {
+	display:block;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0,0,0,0.4);
+}
+
+.modal5-content {
+	background-color: #fefefe;
+	margin: 15% auto 15% auto;
+	border: 1px solid #888;
+	width: 40%;
+	padding-bottom: 50px;
+}
   
   /* Modal Content Box */
   .modal-content {
@@ -340,6 +372,24 @@ footer {
 	  padding-bottom: 50px;
   }
   
+
+  .modal5-content {
+	background-color: #fefefe;
+	margin: 15% auto 15% auto;
+	border: 1px solid #888;
+	width: 40%;
+	padding-bottom: 50px;
+}
+
+
+.modal7-content {
+	background-color: #fefefe;
+	margin: 15% auto 15% auto;
+	border: 1px solid #888;
+	width: 40%;
+	padding-bottom: 50px;
+}
+
   /* The Close Button (x) */
   .close {
 	  position: absolute;
@@ -363,7 +413,7 @@ footer {
 	  to {transform: scale(1)}
   }
   
-  
+
   
   .modal2 {
 	  display:none;
@@ -390,3 +440,4 @@ footer {
 	color:#9A1A4A;
 	cursor: pointer;
 }
+

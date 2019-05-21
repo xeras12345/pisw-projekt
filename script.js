@@ -14,3 +14,19 @@ window.onclick = function(event) {
         modal2.style.display = "none";
     }
 }
+
+var modal5 = document.getElementById('modal-wrapper5');
+window.onclick = function(event) {
+    if (event.target == modal5) {
+        modal5.style.display = "none";
+    }
+}
+
+
+
+var modal7 = document.getElementById('modal-wrapper7');
+window.onclick = function(event) {
+    if (event.target == modal7) {
+        modal7.style.display = "none";
+    }
+}

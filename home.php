@@ -70,6 +70,7 @@ require_once "connect.php";
 // Define variables and initialize with empty values
 $email1 = $password1 = "";
 $email1_err = $password1_err = "";
+$password2_err = "";
  
 // Processing form data when form is submitted
 
@@ -124,12 +125,87 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction'])){
                             header("location: home_logged.php");
                         } else{
                             // Display an error message if password is not valid
-                            $password1_err = "<p><font size='2' color='red'>Hasło które podałeś jest błędne</font></p>";
-                        }
+							$password1_err = "<p><font size='2' color='red'>Hasło które podałeś jest błędne</font></p>";
+							?>
+							<div id="modal-wrapper5" class="modal5">
+  
+  							<form class="modal5-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        
+    							<div class="imgcontainer">
+      							<span onclick="document.getElementById('modal-wrapper5').style.display='none'" class="close" title="Close PopUp">&times;</span>
+      							<h1 style="text-align:center">Logowanie</h1></br>
+    						</div>
+
+   							<div class="container3">
+            				<div class="textbox <?php echo (!empty($email1_err)) ? 'has-error' : ''; ?>">
+                			<input type="text" name="email1" placeholder="Email" required="required">
+            				</div>
+            				<?php echo $email1_err; ?>
+            				<div class="textbox <?php echo (!empty($password1_err)) ? 'has-error' : ''; ?>">
+                			<input type="password" name="password1" class="form-control" placeholder="Hasło" required="required">
+            				</div>
+							<?php echo $password1_err; ?></br>
+			
+             
+
+            				<div>
+                				<input type="submit" name="someAction" class="btn" value="Zaloguj się" >
+            				</div>
+    
+						</form>
+  							<div><span>Nie masz jeszcze konta?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper').style.display='none';document.getElementById('modal-wrapper2').style.display='block'" > Zarejestruj się </span>
+						</div>
+
+  
+					</div>
+
+			
+				</div>
+				<?php
+	
+
+					
+						}
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $email1_err = "<p><font size='2' color='red'>Nie mamy takiego użytkownika w bazie</font></p>";
+					$email1_err = "<p><font size='2' color='red'>Nie mamy takiego użytkownika w bazie</font></p>";
+					?>
+							<div id="modal-wrapper5" class="modal5">
+  
+  							<form class="modal5-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        
+    							<div class="imgcontainer">
+      							<span onclick="document.getElementById('modal-wrapper5').style.display='none'" class="close" title="Close PopUp">&times;</span>
+      							<h1 style="text-align:center">Logowanie</h1></br>
+    						</div>
+
+   							<div class="container3">
+            				<div class="textbox <?php echo (!empty($email1_err)) ? 'has-error' : ''; ?>">
+                			<input type="text" name="email1" placeholder="Email" required="required">
+            				</div>
+            				<?php echo $email1_err; ?>
+            				<div class="textbox <?php echo (!empty($password1_err)) ? 'has-error' : ''; ?>">
+                			<input type="password" name="password1" class="form-control" placeholder="Hasło" required="required">
+            				</div>
+							<?php echo $password1_err; ?></br>
+			
+             
+
+            				<div>
+                				<input type="submit" name="someAction" class="btn" value="Zaloguj się" >
+            				</div>
+    
+						</form>
+  							<div><span>Nie masz jeszcze konta?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper').style.display='none';document.getElementById('modal-wrapper2').style.display='block'" > Zarejestruj się </span>
+						</div>
+
+  
+					</div>
+
+			
+				</div>
+				<?php
                 }
                 
             } else{
@@ -164,8 +240,45 @@ $email_err = $password_err = $confirm_password_err = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Validate username
-    if(empty(trim($email))){
-        $email_err = "<p><font size='2' color='red'>Proszę wprowadzić adres email</font></p>";
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+		$email_err = "<p><font size='2' color='red'>Proszę wprowadzić poprawny email</font></p>";
+		?>
+<div id="modal-wrapper7" class="modal7">
+<form class="modal7-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('modal-wrapper7').style.display='none'" class="close" title="Close PopUp">&times;</span>
+      <h1 style="text-align:center">Rejestracja</h1></br>
+    </div>
+
+    <div class="container3">
+            <div class="textbox">
+                <input type="text" name="email" placeholder="Email" required="required">
+			</div>
+			<?php echo $email_err; ?>
+ 
+            <div class="textbox">
+                <input type="password" name="password" class="form-control" placeholder="Hasło" required="required">
+			</div>
+			<?php echo $password_err; ?>
+        
+            <div class="textbox">
+                <input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło" required="required">
+			</div></br>
+			<?php echo $confirm_password_err; ?>
+             
+
+            <div>
+                <input type="submit" class="btn" value="Zarejestruj się">
+            </div>
+            <div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
+    
+  </form>
+</div>
+  
+</div>
+					<?php
+		
     } else{
         // Prepare a select statement
         $sql = "SELECT id FROM users WHERE email = ?";
@@ -174,7 +287,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_email);
             
-            // Set parameters
+			// Set parameters
             $param_email = trim($_POST["email"]);
             
             // Attempt to execute the prepared statement
@@ -183,12 +296,85 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 mysqli_stmt_store_result($stmt);
                 
                 if(mysqli_stmt_num_rows($stmt) == 1){
-                    $email_err = "<p><font size='2' color='red'>Ten email jest już zajęty</font></p>";
+					$email_err = "<p><font size='2' color='red'>Ten email jest już zajęty</font></p>";
+			
+					?>
+<div id="modal-wrapper7" class="modal7">
+<form class="modal7-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('modal-wrapper7').style.display='none'" class="close" title="Close PopUp">&times;</span>
+      <h1 style="text-align:center">Rejestracja</h1></br>
+    </div>
+
+    <div class="container3">
+            <div class="textbox">
+                <input type="text" name="email" placeholder="Email" required="required">
+			</div>
+			<?php echo $email_err; ?>
+ 
+            <div class="textbox">
+                <input type="password" name="password" class="form-control" placeholder="Hasło" required="required">
+			</div>
+			<?php echo $password_err; ?>
+        
+            <div class="textbox">
+                <input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło" required="required">
+			</div></br>
+			<?php echo $confirm_password_err; ?>
+             
+
+            <div>
+                <input type="submit" class="btn" value="Zarejestruj się">
+            </div>
+            <div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
+    
+  </form>
+</div>
+  
+</div>
+					<?php
                 } else{
                     $email = trim($_POST["email"]);
                 }
             } else{
-                echo "<p><font size='2' color='red'>Ups! Coś poszło nie tak, spróbuj ponownie później</font></p>";
+				echo "<p><font size='2' color='red'>Ups! Coś poszło nie tak, spróbuj ponownie później</font></p>";
+				?>
+				<div id="modal-wrapper7" class="modal7">
+				<form class="modal7-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+						
+					<div class="imgcontainer">
+					  <span onclick="document.getElementById('modal-wrapper7').style.display='none'" class="close" title="Close PopUp">&times;</span>
+					  <h1 style="text-align:center">Rejestracja</h1></br>
+					</div>
+				
+					<div class="container3">
+							<div class="textbox">
+								<input type="text" name="email" placeholder="Email" required="required">
+							</div>
+							<?php echo $email_err; ?>
+				 
+							<div class="textbox">
+								<input type="password" name="password" class="form-control" placeholder="Hasło" required="required">
+							</div>
+							<?php echo $password_err; ?>
+						
+							<div class="textbox">
+								<input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło" required="required">
+							</div></br>
+							<?php echo $confirm_password_err; ?>
+							 
+				
+							<div>
+								<input type="submit" class="btn" value="Zarejestruj się">
+							</div>
+							<div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
+					
+				  </form>
+				</div>
+				  
+				</div>
+									<?php
             }
         }
          
@@ -200,7 +386,43 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($password))){
         $password_err = "<p><font size='2' color='red'>Proszę wprowadzić hasło</font></p>";     
     } elseif(strlen(trim($_POST["password"])) < 6){
-        $password_err = "<p><font size='2' color='red'>Hasło musi mieć minimum 6 znaków</font></p>";
+		$password_err = "<p><font size='2' color='red'>Hasło musi mieć minimum 6 znaków</font></p>";
+		?>
+		<div id="modal-wrapper7" class="modal7">
+		<form class="modal7-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+				
+			<div class="imgcontainer">
+			  <span onclick="document.getElementById('modal-wrapper7').style.display='none'" class="close" title="Close PopUp">&times;</span>
+			  <h1 style="text-align:center">Rejestracja</h1></br>
+			</div>
+		
+			<div class="container3">
+					<div class="textbox">
+						<input type="text" name="email" placeholder="Email" required="required">
+					</div>
+					<?php echo $email_err; ?>
+		 
+					<div class="textbox">
+						<input type="password" name="password" class="form-control" placeholder="Hasło" required="required">
+					</div>
+					<?php echo $password_err; ?>
+				
+					<div class="textbox">
+						<input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło" required="required">
+					</div></br>
+					<?php echo $confirm_password_err; ?>
+					 
+		
+					<div>
+						<input type="submit" class="btn" value="Zarejestruj się">
+					</div>
+					<div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
+			
+		  </form>
+		</div>
+		  
+		</div>
+							<?php
     } else{
         $password = trim($_POST["password"]);
     }
@@ -211,7 +433,43 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } else{
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "<p><font size='2' color='red'>Podane hasła nie pasują do siebie</font></p>";
+			$confirm_password_err = "<p><font size='2' color='red'>Podane hasła nie pasują do siebie</font></p>";
+			?>
+			<div id="modal-wrapper7" class="modal7">
+			<form class="modal7-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+					
+				<div class="imgcontainer">
+				  <span onclick="document.getElementById('modal-wrapper7').style.display='none'" class="close" title="Close PopUp">&times;</span>
+				  <h1 style="text-align:center">Rejestracja</h1></br>
+				</div>
+			
+				<div class="container3">
+						<div class="textbox">
+							<input type="text" name="email" placeholder="Email" required="required">
+						</div>
+						<?php echo $email_err; ?>
+			 
+						<div class="textbox">
+							<input type="password" name="password" class="form-control" placeholder="Hasło" required="required">
+						</div>
+						<?php echo $password_err; ?>
+					
+						<div class="textbox">
+							<input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło" required="required">
+						</div></br>
+						<?php echo $confirm_password_err; ?>
+						 
+			
+						<div>
+							<input type="submit" class="btn" value="Zarejestruj się">
+						</div>
+						<div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
+				
+			  </form>
+			</div>
+			  
+			</div>
+								<?php
         }
     }
     
@@ -231,8 +489,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Redirect to login page
-                header("location: home.php");
+				// Redirect to login page
+			$to_email = $_POST['email'] ;
+			$subject = 'Potwierdzenie Rejestracji - Założyłeś nowe konto na stronie LOIGNON.PL';
+			$message = 'Dziekujemy za rejestracje i zapraszamy do korzystania z naszej cudownej strony!';
+			$headers .= 'Content-Type: text/html; charset=utf-8';
+			mail($to_email,$subject,$message,$headers);
+				header("location: home.php");    
+
             } else{
                 echo "Coś poszło nie tak, spróbuj ponownie później.";
             }
@@ -243,7 +507,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    
+    mysqli_close($link);
 }
 ?>
 <section>
@@ -264,11 +528,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="textbox <?php echo (!empty($password1_err)) ? 'has-error' : ''; ?>">
                 <input type="password" name="password1" class="form-control" placeholder="Hasło" required="required">
             </div>
-            <?php echo $password1_err; ?></br>
+			<?php echo $password1_err; ?></br>
+			
              
 
             <div>
-                <input type="submit" name="someAction" class="btn" value="Zaloguj się">
+                <input type="submit" name="someAction" class="btn" value="Zaloguj się" >
             </div>
     
 </form>
@@ -292,15 +557,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="container3">
             <div class="textbox">
                 <input type="text" name="email" placeholder="Email" required="required">
-            </div>
+			</div>
+			<?php echo $email_err; ?>
  
             <div class="textbox">
                 <input type="password" name="password" class="form-control" placeholder="Hasło" required="required">
-            </div>
+			</div>
+			<?php echo $password_err; ?>
         
             <div class="textbox">
                 <input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło" required="required">
-            </div></br>
+			</div></br>
+			<?php echo $confirm_password_err; ?>
              
 
             <div>
