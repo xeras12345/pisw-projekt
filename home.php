@@ -7,8 +7,8 @@
   <title>Restaurant</title>
   <meta name="description" content="Restaurant home page">
   <meta name="author" content="">
-
   <link rel="stylesheet" href="styles.css" type="text/css">
+  <script src="script.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap&subset=latin-ext" rel="stylesheet">
 
 </head>
@@ -31,7 +31,7 @@
 					<li>STRONA GŁÓWNA</li>
 					<li>ZAMÓW ONLINE</li>
 					<li>REZERWACJE</li>
-					<li><a href="login.php">O NAS</a></li>
+					<li><span onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></li>
 				</ul>
 			</div>
 		</div>
@@ -50,6 +50,263 @@
 	</div>
 
 </header>
+<?php
+// Initialize the session
+session_start();
+ 
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: home_logged.php");
+    exit;
+}
+ 
+// Include config file
+require_once "connect.php";
+ 
+// Define variables and initialize with empty values
+$email1 = $password1 = "";
+$email1_err = $password1_err = "";
+ 
+// Processing form data when form is submitted
+
+if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction'])){
+ 
+    // Check if username is empty
+    if(empty(trim($_POST["email1"]))){
+        $email1_err = "<p><font size='2' color='red'>Proszę wprowadzić adres email</font></p>";
+    } else{
+        $email1 = trim($_POST["email1"]);
+    }
+    
+    // Check if password is empty
+    if(empty(trim($_POST["password1"]))){
+        $password1_err = "<p><font size='2' color='red'>Proszę wprowadzić hasło</font></p>";
+    } else{
+        $password1 = trim($_POST["password1"]);
+    }
+    
+    // Validate credentials
+    if(empty($email1_err) && empty($password1_err)){
+        // Prepare a select statement
+        $sql = "SELECT id, email, haslo FROM users WHERE email = ?";
+        
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_email1);
+            
+            // Set parameters
+            $param_email1 = $email1;
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Store result
+                mysqli_stmt_store_result($stmt);
+                
+                // Check if username exists, if yes then verify password
+                if(mysqli_stmt_num_rows($stmt) == 1){                    
+                    // Bind result variables
+                    mysqli_stmt_bind_result($stmt, $id, $email1, $hashed_password1);
+                    if(mysqli_stmt_fetch($stmt)){
+                        if(password_verify($password1, $hashed_password1)){
+                            // Password is correct, so start a new session
+                            session_start();
+                            
+                            // Store data in session variables
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["id"] = $id;
+                            $_SESSION["email"] = $email1;                            
+                            
+                            // Redirect user to welcome page
+                            header("location: home_logged.php");
+                        } else{
+                            // Display an error message if password is not valid
+                            $password1_err = "<p><font size='2' color='red'>Hasło które podałeś jest błędne</font></p>";
+                        }
+                    }
+                } else{
+                    // Display an error message if username doesn't exist
+                    $email1_err = "<p><font size='2' color='red'>Nie mamy takiego użytkownika w bazie</font></p>";
+                }
+                
+            } else{
+                echo "Ups! Coś poszło nie tak, spróbuj ponownie później";
+            }
+            mysqli_stmt_close($stmt);
+        } else {
+            echo "Coś nie tak z sql squery: " . mysqli_error($link);
+        }
+        
+        // Close statement
+        
+    }
+    
+    // Close connection
+    mysqli_close($link);
+}
+?>
+
+
+<?php
+// Include config file
+require_once "connect.php";
+ 
+// Define variables and initialize with empty values
+$email = $password = $confirm_password = "";
+$email_err = $password_err = $confirm_password_err = "";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Validate username
+    if(empty(trim($_POST["email"]))){
+        $email_err = "<p><font size='2' color='red'>Proszę wprowadzić adres email</font></p>";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT id FROM users WHERE email = ?";
+        
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "s", $param_email);
+            
+            // Set parameters
+            $param_email = trim($_POST["email"]);
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                /* store result */
+                mysqli_stmt_store_result($stmt);
+                
+                if(mysqli_stmt_num_rows($stmt) == 1){
+                    $email_err = "<p><font size='2' color='red'>Ten email jest już zajęty</font></p>";
+                } else{
+                    $email = trim($_POST["email"]);
+                }
+            } else{
+                echo "<p><font size='2' color='red'>Ups! Coś poszło nie tak, spróbuj ponownie później</font></p>";
+            }
+        }
+         
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+    
+    // Validate password
+    if(empty(trim($_POST["password"]))){
+        $password_err = "<p><font size='2' color='red'>Proszę wprowadzić hasło</font></p>";     
+    } elseif(strlen(trim($_POST["password"])) < 6){
+        $password_err = "<p><font size='2' color='red'>Hasło musi mieć minimum 6 znaków</font></p>";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+    
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "<p><font size='2' color='red'>Proszę powtórzyć hasło</font></p>";     
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "<p><font size='2' color='red'>Podane hasła nie pasują do siebie</font></p>";
+        }
+    }
+    
+    // Check input errors before inserting in database
+    if(empty($email_err) && empty($password_err) && empty($confirm_password_err)){
+        
+        // Prepare an insert statement
+        $sql = "INSERT INTO users (email, haslo) VALUES (?, ?)";
+         
+        if($stmt = mysqli_prepare($link, $sql)){
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ss", $param_email, $param_password);
+            
+            // Set parameters
+            $param_email = $email;
+            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            
+            // Attempt to execute the prepared statement
+            if(mysqli_stmt_execute($stmt)){
+                // Redirect to login page
+                header("location: home.php");
+            } else{
+                echo "Coś poszło nie tak, spróbuj ponownie później.";
+            }
+        }
+         
+        // Close statement
+        mysqli_stmt_close($stmt);
+    }
+    
+    // Close connection
+    mysqli_close($link);
+}
+?>
+<section>
+<div id="modal-wrapper" class="modal">
+  
+  <form class="modal-content animate" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('modal-wrapper').style.display='none'" class="close" title="Close PopUp">&times;</span>
+      <h1 style="text-align:center">Logowanie</h1></br>
+    </div>
+
+    <div class="container3">
+            <div class="textbox <?php echo (!empty($email1_err)) ? 'has-error' : ''; ?>">
+                <input type="text" name="email1" placeholder="Email">
+            </div>
+            <?php echo $email1_err; ?>
+            <div class="textbox <?php echo (!empty($password1_err)) ? 'has-error' : ''; ?>">
+                <input type="password" name="password1" class="form-control" placeholder="Hasło">
+            </div>
+            <?php echo $password1_err; ?></br>
+             
+
+            <div>
+                <input type="submit" name="someAction" class="btn" value="Zaloguj się">
+            </div>
+    
+</form>
+  <div><span>Nie masz jeszcze konta?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper').style.display='none';document.getElementById('modal-wrapper2').style.display='block'" > Zarejestruj się </span>
+</div>
+
+  
+</div>
+
+</div>
+
+<div id="modal-wrapper2" class="modal2">
+
+<form class="modal-content2 animate" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('modal-wrapper2').style.display='none'" class="close" title="Close PopUp">&times;</span>
+      <h1 style="text-align:center">Rejestracja</h1></br>
+    </div>
+
+    <div class="container3">
+            <div class="textbox">
+                <input type="text" name="email" placeholder="Email">
+            </div>
+ 
+            <div class="textbox">
+                <input type="password" name="password" class="form-control" placeholder="Hasło">
+            </div>
+        
+            <div class="textbox">
+                <input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło">
+            </div></br>
+             
+
+            <div>
+                <input type="submit" class="btn" value="Zarejestruj się">
+            </div>
+            <div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
+    
+  </form>
+</div>
+  
+</div>
+</section>
 
 <section>
 
