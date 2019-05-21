@@ -15,9 +15,6 @@ window.onclick = function(event) {
     }
 }
 
-
-
-
 var modal5 = document.getElementById('modal-wrapper5');
 window.onclick = function(event) {
     if (event.target == modal5) {

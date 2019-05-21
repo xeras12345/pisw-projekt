@@ -24,15 +24,15 @@
 				<img src="img/social (1).png" class="responsiveImageSocial">
 				<img src="img/social (2).png" class="responsiveImageSocial">
 			</div>
-			<div class="col span_5_of_12">
+			<div class="col span_1_of_12">
 			</div>
-			<div class="col span_5_of_12">
-				<ul>
-					<li>STRONA GŁÓWNA</li>
-					<li>ZAMÓW ONLINE</li>
-					<li>REZERWACJE</li>
-					<li><a><span id="log" onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></a></li>
-				</ul>
+			<div class="col span_9_of_12">
+                <ul>
+                    <li>STRONA GŁÓWNA</li>
+                    <li>ZAMÓW ONLINE</li>
+                    <li>REZERWACJE</li>
+                    <li><a><span id="log" onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></a></li>
+                </ul>
 			</div>
 		</div>
 
@@ -42,14 +42,18 @@
 
 		<div class="col span_4_of_12">
 		</div>
-		<div class="col span_4_of_12">
-		<img src="img/logo (2).png" class="responsiveImageHeader">
+		<div class="col span_4_of_12" class="ressponsiveImageHeaderParent" id="logo">
+            <img src="img/logo1.png" class="responsiveImageHeader1" id="logo1">
+            <img src="img/logo2.png" class="responsiveImageHeaderHidden responsiveImageHeader2" id="logo2">
 		</div>
 		<div class="col span_4_of_12">
 
 	</div>
 
 </header>
+
+<script src="logoscript.js"></script>
+
 <?php
 // Initialize the session
 session_start();
@@ -597,21 +601,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['newAction'])){
 			<img src="img/salad.png" class="responsiveImageIcon">
 			<p class="sectionTextBold">ŚWIEŻE SKŁADNIKI</p>
 			<p class="sectionIconText">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique nec ante non rutrum. Etiam mattis sed diam at scelerisque.
-			</p>
-			</div>
+                Używamy tylko świeżych składników, które trafiają do nas codziennie, prosto od lokalnych rolników. 
+            </p>
+		</div>
 		<div class="col span_4_of_12">
 			<img src="img/menu.png" class="responsiveImageIcon">
 			<p class="sectionTextBold">DOMOWE RECEPTURY</p>
 			<p class="sectionIconText">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique nec ante non rutrum. Etiam mattis sed diam at scelerisque.
+                Specjalizujemy się w tradycyjnych daniach, które łączymy z nowoczesną i zdrową kuchnią.
 			</p>
 		</div>
 		<div class="col span_3_of_12">
 			<img src="img/chef.png" class="responsiveImageIcon">
 			<p class="sectionTextBold">PROFESJONALIZM</p>
 			<p class="sectionIconText">
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique nec ante non rutrum. Etiam mattis sed diam at scelerisque.
+                W naszej restauracji pracują tylko profesjonalni kucharze, którzy sprostają Twoim oczekiwaniom.
 			</p>
 		</div>
 		<div class="col span_1_of_12">
@@ -638,15 +642,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['newAction'])){
 		</div>
 		<div class="col span_4_of_12">
 			<p class="sectionTextBold textMenu">TOST Z AWOKADO NA CIEPŁO</p>
-			<p class="textMenu">chrupiący chleb, awokado, jajko w koszulce, świeża bazylia</p>
+			<p class="textMenu">chrupiący chleb, awokado, jajko w koszulce, świeża bazylia, cebula</p>
 		</div>
 
 		<div class="col span_2_of_12">
 			<img src="img/talerz3.png" class="responsiveImageDish">
 		</div>
 		<div class="col span_4_of_12">
-			<p class="sectionTextBold textMenu">TOST Z AWOKADO NA CIEPŁO</p>
-			<p class="textMenu">chrupiący chleb, awokado, jajko w koszulce, świeża bazylia</p>
+			<p class="sectionTextBold textMenu">SAŁATKA Z WINOGRONEM</p>
+			<p class="textMenu">sałata, winogron, pomidor cherry, ananas, ser koz, cebula</p>
 		</div>
 
 
@@ -658,16 +662,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['newAction'])){
 			<img src="img/talerz4.png" class="responsiveImageDish">
 		</div>
 		<div class="col span_4_of_12">
-			<p class="sectionTextBold textMenu">TOST Z AWOKADO NA CIEPŁO</p>
-			<p class="textMenu">chrupiący chleb, awokado, jajko w koszulce, świeża bazylia</p>
+			<p class="sectionTextBold textMenu">ZUPA Z KREWETKAMI</p>
+			<p class="textMenu">krewetki, domowy makaron, szczypiorek, chili, cebula</p>
 		</div>
 
 		<div class="col span_2_of_12">
 			<img src="img/talerz5.png" class="responsiveImageDish">
 		</div>
 		<div class="col span_4_of_12">
-			<p class="sectionTextBold textMenu">TOST Z AWOKADO NA CIEPŁO</p>
-			<p class="textMenu">chrupiący chleb, awokado, jajko w koszulce, świeża bazylia</p>
+			<p class="sectionTextBold textMenu">ROSÓŁ</p>
+			<p class="textMenu">domowy makaron, pietruszka, szczypiorek, cebula</p>
 		</div>
 
 
@@ -679,16 +683,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['newAction'])){
 			<img src="img/talerz7.png" class="responsiveImageDish">
 		</div>
 		<div class="col span_4_of_12">
-			<p class="sectionTextBold textMenu">TOST Z AWOKADO NA CIEPŁO</p>
-			<p class="textMenu">chrupiący chleb, awokado, jajko w koszulce, świeża bazylia</p>
+			<p class="sectionTextBold textMenu">PIECZONE ZIEMNIAKI W SOSIE PIECZARKOWYM</p>
+			<p class="textMenu">ziemniaki, śmietana, pieczarki, cebula</p>
 		</div>
 
 		<div class="col span_2_of_12">
 			<img src="img/talerz9.png" class="responsiveImageDish">
 		</div>
 		<div class="col span_4_of_12">
-			<p class="sectionTextBold textMenu">TOST Z AWOKADO NA CIEPŁO</p>
-			<p class="textMenu">chrupiący chleb, awokado, jajko w koszulce, świeża bazylia</p>
+			<p class="sectionTextBold textMenu">RYŻ Z CUKINIĄ</p>
+			<p class="textMenu">ryż brązowy, grillowana cukinia, jajko na miękko, cebula</p>
 		</div>
 
 
@@ -696,7 +700,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['newAction'])){
 
 </section>
 
-<section id="about">
+<section>
 
 	<div class="section group">
 
@@ -711,11 +715,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['newAction'])){
 		<div class="col span_2_of_12">
 		</div>
 		<div class="col span_2_of_12">
-			<p class="sectionTextBold">TELEFON</p>
-			<p class="sectionTextBold">ADRES</p>
+            <p class="sectionTextBold">TELEFON</p>
+            <p class="sectionText">500-500-500</p>
 		</div>
 		<div class="col span_2_of_12">
-			<p class="sectionText">500-500-500</p>
+            <p class="sectionTextBold">ADRES</p>
 			<p class="sectionText">ul. Kuźnicza 15</p>
 			<p class="sectionText">76-628 Wrocław</p>
 		</div>
@@ -730,7 +734,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['newAction'])){
 </section>
 
 <footer>
-	stoooopka
+<div class="section group">
+
+<div class="col span_3_of_12">
+</div>
+<div class="col span_6_of_12">
+    <p class="sectionText">Strona główna &nbsp&nbsp&nbsp Zamów online &nbsp&nbsp&nbsp Rezerwacje</p>
+    <p class="sectionText">Restauracja l'Oignon &nbsp&nbsp&nbsp tel. 500-500-500 &nbsp&nbsp&nbsp ul. Kuźnicza 15 Wrocław</p>
+</div>
+<div class="col span_3_of_12">
+</div>
+
+</div>
 </footer>
 
 </body>
