@@ -149,7 +149,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction'])){
             				</div>
     
 						</form>
-  							<div><span>Nie masz jeszcze konta?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper').style.display='none';document.getElementById('modal-wrapper2').style.display='block'" > Zarejestruj się </span>
+  							<div><span>Nie masz jeszcze konta?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper5').style.display='none';document.getElementById('modal-wrapper2').style.display='block'" > Zarejestruj się </span>
 						</div>
 
   
@@ -193,7 +193,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" and isset($_POST['someAction'])){
             				</div>
     
 						</form>
-  							<div><span>Nie masz jeszcze konta?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper').style.display='none';document.getElementById('modal-wrapper2').style.display='block'" > Zarejestruj się </span>
+  							<div><span>Nie masz jeszcze konta?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper5').style.display='none';document.getElementById('modal-wrapper2').style.display='block'" > Zarejestruj się </span>
 						</div>
 
   
@@ -233,7 +233,7 @@ $email = isset($_POST['email']) ? $_POST['email'] : '';
 $email_err = $password_err = $confirm_password_err = "";
 
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
+if($_SERVER["REQUEST_METHOD"] == "POST" and isset($_POST['newAction'])){
  
     // Validate username
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
@@ -265,7 +265,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
              
 
             <div>
-                <input type="submit" class="btn" value="Zarejestruj się">
+                <input type="submit" class="btn" value="Zarejestruj się" name="newAction">
             </div>
             <div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
     
@@ -321,7 +321,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
              
 
             <div>
-                <input type="submit" class="btn" value="Zarejestruj się">
+                <input type="submit" class="btn" value="Zarejestruj się" name="newAction">
             </div>
             <div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
     
@@ -362,7 +362,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 							 
 				
 							<div>
-								<input type="submit" class="btn" value="Zarejestruj się">
+								<input type="submit" class="btn" value="Zarejestruj się" name="newAction">
 							</div>
 							<div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
 					
@@ -410,7 +410,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 					 
 		
 					<div>
-						<input type="submit" class="btn" value="Zarejestruj się">
+						<input type="submit" class="btn" value="Zarejestruj się" name="newAction">
 					</div>
 					<div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
 			
@@ -457,7 +457,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 						 
 			
 						<div>
-							<input type="submit" class="btn" value="Zarejestruj się">
+							<input type="submit" class="btn" value="Zarejestruj się" name="newAction">
 						</div>
 						<div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
 				
@@ -486,11 +486,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
 				// Redirect to login page
-			$to_email = $_POST['email'] ;
-			$subject = 'Potwierdzenie Rejestracji - Założyłeś nowe konto na stronie LOIGNON.PL';
-			$message = 'Dziekujemy za rejestracje i zapraszamy do korzystania z naszej cudownej strony!';
-			$headers .= 'Content-Type: text/html; charset=utf-8';
-			mail($to_email,$subject,$message,$headers);
+				$to_email = $_POST['email'] ;
+				$subject = 'Potwierdzenie Rejestracji - Założyłeś nowe konto na stronie LOIGNON.PL';
+				$message = 'Dziękujemy za rejestracje i zapraszamy do korzystania z naszej cudownej strony!';
+				$headers = 'Od: Loignon';
+				$headers .= 'Content-Type: text/html; charset=utf-8';
+				mail($to_email,$subject,$message,$headers);
 				header("location: home.php");    
 
             } else{
@@ -562,13 +563,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			<?php echo $password_err; ?>
         
             <div class="textbox">
-                <input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło" required="required">
+                <input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło" required="required" >
 			</div></br>
 			<?php echo $confirm_password_err; ?>
              
 
             <div>
-                <input type="submit" class="btn" value="Zarejestruj się">
+                <input type="submit" class="btn" value="Zarejestruj się" name="newAction">
             </div>
             <div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
     
