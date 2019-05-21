@@ -64,7 +64,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 <section>
 <div>
-        <h1>Witaj, <b><?php echo htmlspecialchars($_SESSION["email"]); ?></b>. Witamy na naszej stronie.</h1>
+        <h1>Witaj, <b><?php echo htmlspecialchars($_SESSION["email1"]); ?></b>. Witamy na naszej stronie.</h1>
     </div>
 </section>
 
