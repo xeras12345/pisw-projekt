@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
+  <meta http-equiv="Page-Enter" content="revealTrans(Duration=2.0,Transition=2)">
   <title>Restaurant</title>
   <meta name="description" content="Restaurant home page">
   <meta name="author" content="">
@@ -31,7 +31,7 @@
 					<li>STRONA GŁÓWNA</li>
 					<li>ZAMÓW ONLINE</li>
 					<li>REZERWACJE</li>
-					<li>O NAS</li>
+					<li><a href="login.php">O NAS</a></li>
 				</ul>
 			</div>
 		</div>
