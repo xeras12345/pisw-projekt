@@ -9,12 +9,41 @@ header {
 	padding-top: 50px;
 }
 
-.responsiveImageHeader {
+.responsiveImageHeaderHidden{
+	opacity:0;   
+ }
+
+ img {
+	opacity: 1;
+}
+
+ .responsiveImageHeaderParent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.responsiveImageHeader1 {
+  position: relative;
+  top: 0;
+	left: 0;
 	height: auto;
 	width: auto;
 	max-width: 100%;
 	padding-left: 0%;
 	padding-right: 0%;
+	transition:opacity 2s linear;
+}
+.responsiveImageHeader2 {
+  position: absolute;
+  top: 64px;
+	left: 33,3%;
+	height: auto;
+	width: auto;
+	max-width: 30%;
+	padding-left: 0%;
+	padding-right: 0%;
+	transition:opacity 2s linear;
 }
 
 .responsiveImageSocial {
@@ -60,15 +89,6 @@ section {
 	letter-spacing: 2px;
 	margin-top: 60px;
 	margin-bottom: 60px;
-}
-
-#about .sectionTitle {
-	text-align: center;
-	font-size: 150%;
-	font-weight: bold;
-	letter-spacing: 2px;
-	margin-top: 60px;
-	margin-bottom: 30px;
 }
 
 .responsiveImageIcon {
@@ -123,11 +143,6 @@ section {
 	letter-spacing: 1px;
 }
 
-#about {
-	background: #eeeeee;
-	margin-top: 60px;
-}
-
 .responsiveImageMap {
 	height: auto;
 	width: auto;
@@ -137,6 +152,11 @@ section {
 	display: block;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+footer {
+	background: #eeeeee;
+	margin-top: 60px;
 }
 
 /*  SECTIONS  */
@@ -150,9 +170,6 @@ section {
 	margin-right: auto;
 }
 
-footer {
-	background: white;
-}
 
 /*  COLUMN SETUP  */
 .col {
@@ -217,18 +234,19 @@ footer {
 }
 
 /*  GO FULL WIDTH BELOW 480 PIXELS */
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 1000px) {
 	.col {  margin: 1% 0 1% 0%; }
     
     .span_1_of_12, .span_2_of_12, .span_3_of_12, .span_4_of_12, .span_5_of_12, .span_6_of_12, .span_7_of_12, .span_8_of_12, .span_9_of_12, .span_10_of_12, .span_11_of_12, .span_12_of_12 {
 	width: 100%; 
 	}
+
+	header {
+		background: #eeeeee;
+		padding-bottom: 10px;
+		padding-top: 80px;
+	}
 }
-
-
-
-
-
 
 .textbox{
 	width: 50%;
@@ -238,8 +256,7 @@ footer {
 	padding: 8px 0;
 	border-bottom: 1px solid black;
   }
-  
-  
+ 
   .container {
 	  text-align: center;
 	  width: 40%;
@@ -251,7 +268,6 @@ footer {
 	  margin-bottom: 10px;
   }
   
-  
   .container2 {
 	  text-align: center;
 	  width: 40%;
@@ -261,8 +277,6 @@ footer {
 	  border: 2px solid #fff;
 	  box-shadow: 0 15px 40px rgba(0,0,0,.5);
   }
-  
-  
   
   .container3 {
 	  text-align: center;
