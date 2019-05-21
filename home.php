@@ -31,7 +31,7 @@
 					<li>STRONA GŁÓWNA</li>
 					<li>ZAMÓW ONLINE</li>
 					<li>REZERWACJE</li>
-					<li><span onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></li>
+					<li><a><span id="log" onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></a></li>
 				</ul>
 			</div>
 		</div>
