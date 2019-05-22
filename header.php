@@ -11,7 +11,7 @@
         <div class="col span_1_of_12">
         </div>
         <div class="col span_9_of_12">
-            <ul>
+            <ul id="menulist">
                 <li><a href="home.php">STRONA GŁÓWNA</a></li>
                 <li>ZAMÓW ONLINE</li>
                 <li>REZERWACJE</li>
@@ -40,12 +40,6 @@
 <?php
 // Initialize the session
 session_start();
-
-// Check if the user is already logged in, if yes then redirect him to welcome page
-if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-header("location: home_logged.php");
-exit;
-}
 
 // Include config file
 require_once "connect.php";
@@ -97,7 +91,7 @@ if(empty($email1_err) && empty($password1_err)){
                 if(mysqli_stmt_fetch($stmt)){
                     if(password_verify($password1, $hashed_password1)){
                         // Password is correct, so start a new session
-                        session_start();
+                        //session_start();
                         
                         // Store data in session variables
                         $_SESSION["loggedin"] = true;
@@ -105,7 +99,7 @@ if(empty($email1_err) && empty($password1_err)){
                         $_SESSION["email1"] = $email1;                            
                         
                         // Redirect user to welcome page
-                        header("location: home_logged.php");
+                        header('home.php');
                     } else{
                         // Display an error message if password is not valid
                         $password1_err = "<p><font size='2' color='red'>Hasło które podałeś jest błędne</font></p>";
@@ -492,6 +486,10 @@ if(empty($email_err) && empty($password_err) && empty($confirm_password_err)){
 
 // Close connection
 mysqli_close($link);
+}
+
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    echo("<script> changemenu(); </script>");
 }
 ?>
 <section>

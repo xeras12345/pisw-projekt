@@ -22,11 +22,21 @@ window.onclick = function(event) {
     }
 }
 
-
-
 var modal7 = document.getElementById('modal-wrapper7');
 window.onclick = function(event) {
     if (event.target == modal7) {
         modal7.style.display = "none";
     }
+}
+
+function changemenu() {
+    var menu = document.getElementById("menulist");
+    menu.removeChild(menu.lastChild);
+    menu.removeChild(menu.lastChild);
+    var newelement = document.createElement('li');
+    newelement.innerHTML = '<a href="profile.php">TWOJE KONTO</a>';
+    menu.appendChild(newelement);
+    var newelement = document.createElement('li')
+    newelement.innerHTML = '<a href="logout.php">WYLOGUJ</a>';
+    menu.appendChild(newelement);
 }
