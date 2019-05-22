@@ -17,30 +17,13 @@ header {
 	opacity: 1;
 }
 
- .responsiveImageHeaderParent {
-  position: relative;
-  top: 0;
-  left: 0;
-}
-
-.responsiveImageHeader1 {
+.responsiveImageHeader {
   position: relative;
   top: 0;
 	left: 0;
 	height: auto;
 	width: auto;
 	max-width: 100%;
-	padding-left: 0%;
-	padding-right: 0%;
-	transition:opacity 2s linear;
-}
-.responsiveImageHeader2 {
-  position: absolute;
-  top: 64px;
-	left: 33,3%;
-	height: auto;
-	width: auto;
-	max-width: 30%;
 	padding-left: 0%;
 	padding-right: 0%;
 	transition:opacity 2s linear;
@@ -76,6 +59,11 @@ nav ul li {
 	letter-spacing: 2px; 
 	margin: 0;
 	padding: 10px;
+}
+
+a {
+	color: black;
+	text-decoration: none;
 }
 
 section {
