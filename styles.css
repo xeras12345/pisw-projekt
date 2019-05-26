@@ -147,6 +147,25 @@ footer {
 	margin-top: 60px;
 }
 
+#adminnav {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+#adminnav li{
+	display: inline;
+	font-size: 90%;
+	letter-spacing: 2px; 
+	margin: 0;
+	padding: 10px;
+}
+
+#dodajpozycje {
+	text-align: center;
+}
+
 /*  SECTIONS  */
 .section {
 	clear: both;

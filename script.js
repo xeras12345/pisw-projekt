@@ -34,7 +34,7 @@ function changemenu() {
     menu.removeChild(menu.lastChild);
     menu.removeChild(menu.lastChild);
     var newelement = document.createElement('li');
-    newelement.innerHTML = '<a href="profile.php">TWOJE KONTO</a>';
+    newelement.innerHTML = '<a href="twojekonto.php">TWOJE KONTO</a>';
     menu.appendChild(newelement);
     var newelement = document.createElement('li')
     newelement.innerHTML = '<a href="logout.php">WYLOGUJ</a>';
