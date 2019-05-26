@@ -13,7 +13,7 @@
         <div class="col span_9_of_12">
             <ul id="menulist">
                 <li><a href="home.php">STRONA GŁÓWNA</a></li>
-                <li>ZAMÓW ONLINE</li>
+                <li><a href="menu.php">ZAMÓW ONLINE</a></li>
                 <li>REZERWACJE</li>
                 <li><a><span id="log" onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></a></li>
             </ul>
