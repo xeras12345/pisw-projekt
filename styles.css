@@ -400,7 +400,7 @@ footer {
 }
 
   /* The Close Button (x) */
-  .close {
+  .close {	
 	  position: absolute;
 	  right: 25px;
 	  top: 0;

@@ -19,6 +19,7 @@ var modal5 = document.getElementById('modal-wrapper5');
 window.onclick = function(event) {
     if (event.target == modal5) {
         modal5.style.display = "none";
+        
     }
 }
 
@@ -26,6 +27,7 @@ var modal7 = document.getElementById('modal-wrapper7');
 window.onclick = function(event) {
     if (event.target == modal7) {
         modal7.style.display = "none";
+        location.href = "home.php";
     }
 }
 
@@ -42,23 +44,3 @@ function changemenu() {
 }
 
 
-function logowanie() {
-    alert("Zostałeś zalogowany pomyślnie!");
-  }
-
-  
-function rejestracja() {
-    alert("Rejestracja przebiegła pomyślnie!");
-  }
-
-
-function tempAlert(msg,duration)
-  {
-   var el = document.createElement("div");
-   el.setAttribute("style","position:absolute;top:40%;left:20%;background-color:white;");
-   el.innerHTML = msg;
-   setTimeout(function(){
-    el.parentNode.removeChild(el);
-   },duration);
-   document.body.appendChild(el);
-  }

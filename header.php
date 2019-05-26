@@ -100,7 +100,7 @@ if(empty($email1_err) && empty($password1_err)){
                         $_SESSION["email1"] = $email1;                            
                         
                         // Redirect user to welcome page
-                        echo '<script type="text/javascript">','logowanie();','</script>';
+                        
                         header('home.php');
                     } else{
                         // Display an error message if password is not valid
@@ -112,7 +112,7 @@ if(empty($email1_err) && empty($password1_err)){
     
                             <div class="imgcontainer">
                               <span onclick="document.getElementById('modal-wrapper5').style.display='none'" class="close" title="Close PopUp">&times;</span>
-                              <h1 style="text-align:center">Logowanie</h1></br>
+                              <h2 style="text-align:center">Logowanie</h2></br>
                         </div>
 
                            <div class="container3">
@@ -156,7 +156,7 @@ if(empty($email1_err) && empty($password1_err)){
     
                             <div class="imgcontainer">
                               <span onclick="document.getElementById('modal-wrapper5').style.display='none'" class="close" title="Close PopUp">&times;</span>
-                              <h1 style="text-align:center">Logowanie</h1></br>
+                              <h2 style="text-align:center">Logowanie</h2></br>
                         </div>
 
                            <div class="container3">
@@ -227,7 +227,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
     
 <div class="imgcontainer">
   <span onclick="document.getElementById('modal-wrapper7').style.display='none'" class="close" title="Close PopUp">&times;</span>
-  <h1 style="text-align:center">Rejestracja</h1></br>
+  <h2 style="text-align:center">Rejestracja</h2></br>
 </div>
 
 <div class="container3">
@@ -283,7 +283,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
     
 <div class="imgcontainer">
   <span onclick="document.getElementById('modal-wrapper7').style.display='none'" class="close" title="Close PopUp">&times;</span>
-  <h1 style="text-align:center">Rejestracja</h1></br>
+  <h2 style="text-align:center">Rejestracja</h2></br>
 </div>
 
 <div class="container3">
@@ -324,7 +324,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)){
                     
                 <div class="imgcontainer">
                   <span onclick="document.getElementById('modal-wrapper7').style.display='none'" class="close" title="Close PopUp">&times;</span>
-                  <h1 style="text-align:center">Rejestracja</h1></br>
+                  <h2 style="text-align:center">Rejestracja</h2></br>
                 </div>
             
                 <div class="container3">
@@ -372,7 +372,7 @@ if(empty(trim($password))){
             
         <div class="imgcontainer">
           <span onclick="document.getElementById('modal-wrapper7').style.display='none'" class="close" title="Close PopUp">&times;</span>
-          <h1 style="text-align:center">Rejestracja</h1></br>
+          <h2 style="text-align:center">Rejestracja</h2></br>
         </div>
     
         <div class="container3">
@@ -412,6 +412,7 @@ if(empty(trim($confirm_password))){
 } else{
     $confirm_password = trim($_POST["confirm_password"]);
     if(empty($password_err) && ($password != $confirm_password)){
+        
         $confirm_password_err = "<p><font size='2' color='red'>Podane hasła nie pasują do siebie</font></p>";
         ?>
         <div id="modal-wrapper7" class="modal7">
@@ -419,7 +420,7 @@ if(empty(trim($confirm_password))){
                 
             <div class="imgcontainer">
               <span onclick="document.getElementById('modal-wrapper7').style.display='none'" class="close" title="Close PopUp">&times;</span>
-              <h1 style="text-align:center">Rejestracja</h1></br>
+              <h2 style="text-align:center">Rejestracja</h2></br>
             </div>
         
             <div class="container3">
@@ -449,7 +450,9 @@ if(empty(trim($confirm_password))){
           
         </div>
                             <?php
+        
     }
+    
 }
 
 // Check input errors before inserting in database
@@ -475,7 +478,45 @@ if(empty($email_err) && empty($password_err) && empty($confirm_password_err)){
             $headers = 'Od: Loignon';
             $headers .= 'Content-Type: text/html; charset=utf-8';
             mail($to_email,$subject,$message,$headers);
-            header('Location: home_logged.php');
+            ?>
+            <div id="modal-wrapper5" class="modal5">
+
+              <form class="modal5-content" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+
+                <div class="imgcontainer">
+                  <span onclick="document.getElementById('modal-wrapper5').style.display='none'" class="close" title="Close PopUp">&times;</span>
+                  <h2 style="text-align:center">Logowanie</h2></br>
+                  <span style="text-align:center">Rejestracja przebiegła pomyślnie!</span></br>
+            </div>
+
+               <div class="container3">
+            <div class="textbox <?php echo (!empty($email1_err)) ? 'has-error' : ''; ?>">
+            <input type="text" name="email1" placeholder="Email" required="required">
+            </div>
+            <?php echo $email1_err; ?>
+            <div class="textbox <?php echo (!empty($password1_err)) ? 'has-error' : ''; ?>">
+            <input type="password" name="password1" class="form-control" placeholder="Hasło" required="required">
+            </div>
+            <?php echo $password1_err; ?></br>
+
+
+
+            <div>
+                <input type="submit" name="someAction" class="btn" value="Zaloguj się" >
+            </div>
+
+        </form>
+              <div><span>Nie masz jeszcze konta?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper5').style.display='none';document.getElementById('modal-wrapper2').style.display='block'" > Zarejestruj się </span>
+        </div>
+
+
+    </div>
+
+
+</div>
+<?php
+
+            
             
     
 
@@ -510,11 +551,11 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
         <div class="textbox <?php echo (!empty($email1_err)) ? 'has-error' : ''; ?>">
             <input type="text" name="email1" placeholder="Email" required="required">
         </div>
-        <?php echo $email1_err; ?>
+        
         <div class="textbox <?php echo (!empty($password1_err)) ? 'has-error' : ''; ?>">
             <input type="password" name="password1" class="form-control" placeholder="Hasło" required="required">
         </div>
-        <?php echo $password1_err; ?></br>
+       
         
          
 
@@ -544,21 +585,21 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
         <div class="textbox">
             <input type="text" name="email" placeholder="Email" required="required">
         </div>
-        <?php echo $email_err; ?>
+        
 
         <div class="textbox">
             <input type="password" name="password" class="form-control" placeholder="Hasło" required="required">
         </div>
-        <?php echo $password_err; ?>
+        
     
         <div class="textbox">
             <input type="password" name="confirm_password" class="form-control" placeholder="Powtórz Hasło" required="required" >
         </div></br>
-        <?php echo $confirm_password_err; ?>
+        
          
 
         <div>
-            <input type="submit" class="btn" value="Zarejestruj się" name="newAction">
+            <input type="submit" class="btn" value="Zarejestruj się" name="newAction" >
         </div>
         <div><span>Masz już konto?</span><span style="color:darkolivegreen;font-weight:bold" onclick="document.getElementById('modal-wrapper2').style.display='none';document.getElementById('modal-wrapper').style.display='block'" > Zaloguj się</span>
 
