@@ -40,3 +40,25 @@ function changemenu() {
     newelement.innerHTML = '<a href="logout.php">WYLOGUJ</a>';
     menu.appendChild(newelement);
 }
+
+
+function logowanie() {
+    alert("Zostałeś zalogowany pomyślnie!");
+  }
+
+  
+function rejestracja() {
+    alert("Rejestracja przebiegła pomyślnie!");
+  }
+
+
+function tempAlert(msg,duration)
+  {
+   var el = document.createElement("div");
+   el.setAttribute("style","position:absolute;top:40%;left:20%;background-color:white;");
+   el.innerHTML = msg;
+   setTimeout(function(){
+    el.parentNode.removeChild(el);
+   },duration);
+   document.body.appendChild(el);
+  }

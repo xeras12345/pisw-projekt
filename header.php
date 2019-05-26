@@ -18,7 +18,8 @@
                 <li><a><span id="log" onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></a></li>
             </ul>
         </div>
-    </div>
+    </div> 
+    
 
 </nav>
 
@@ -99,6 +100,7 @@ if(empty($email1_err) && empty($password1_err)){
                         $_SESSION["email1"] = $email1;                            
                         
                         // Redirect user to welcome page
+                        echo '<script type="text/javascript">','logowanie();','</script>';
                         header('home.php');
                     } else{
                         // Display an error message if password is not valid
@@ -473,7 +475,9 @@ if(empty($email_err) && empty($password_err) && empty($confirm_password_err)){
             $headers = 'Od: Loignon';
             $headers .= 'Content-Type: text/html; charset=utf-8';
             mail($to_email,$subject,$message,$headers);
-            header("location: home.php");    
+            header('Location: home_logged.php');
+            
+    
 
         } else{
             echo "Coś poszło nie tak, spróbuj ponownie później.";
