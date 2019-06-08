@@ -47,13 +47,13 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 		</div>
 
 	</nav>
-
 	<div class="section group">
 
 		<div class="col span_4_of_12">
 		</div>
-		<div class="col span_4_of_12">
-		<img src="img/logo (2).png" class="responsiveImageHeader">
+		<div class="col span_4_of_12" class="ressponsiveImageHeaderParent" id="logo">
+            <img src="img/logo1.png" class="responsiveImageHeader1" id="logo1">
+            <img src="img/logo2.png" class="responsiveImageHeaderHidden responsiveImageHeader2" id="logo2">
 		</div>
 		<div class="col span_4_of_12">
 

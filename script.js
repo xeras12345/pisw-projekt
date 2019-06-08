@@ -19,6 +19,7 @@ var modal5 = document.getElementById('modal-wrapper5');
 window.onclick = function(event) {
     if (event.target == modal5) {
         modal5.style.display = "none";
+        
     }
 }
 
@@ -26,6 +27,7 @@ var modal7 = document.getElementById('modal-wrapper7');
 window.onclick = function(event) {
     if (event.target == modal7) {
         modal7.style.display = "none";
+        location.href = "home.php";
     }
 }
 
@@ -40,3 +42,5 @@ function changemenu() {
     newelement.innerHTML = '<a href="logout.php">WYLOGUJ</a>';
     menu.appendChild(newelement);
 }
+
+
