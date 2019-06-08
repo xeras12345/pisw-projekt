@@ -39,7 +39,7 @@ if (mysqli_num_rows($result) > 0) {
       echo '<script>bookings.push("'.$bdate.','.$btime.','.$tableid.'")</script>';
   }
 } else {
-  echo "0 results";
+  //echo "0 results";
 }
 ?>
 
@@ -101,6 +101,12 @@ if (mysqli_num_rows($result) > 0) {
 </div>
 
 </section>
+
+<form action="potwierdzrezerwacje.php" method="post" id="form">
+<input type="hidden" name="tableid" id="formId">
+<input type="hidden" name="day" id="formDay">
+<input type="hidden" name="time" id="formTime">
+</form>
 
 <script>showBookedTables(bookings, 1)</script>
 

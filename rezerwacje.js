@@ -118,23 +118,25 @@ function putRedBigTable(id){
     el.src = "img/stolikduzy2.png"
 }
 
-function putSmallTable(bookedTablesId, id) {
+function putSmallTable(bookedTablesId, id, day, time) {
     if (bookedTablesId.includes(String(id))) {
         putRedSmallTable(id)
         deleteTableActiveImage(id)
     } else {
         putGreenSmallTable(id)
         addTableActiveImage(id)
+        addOnClick(id, day, time)
     }
 }
 
-function putBigTable(bookedTablesId, id) {
+function putBigTable(bookedTablesId, id, day, time) {
     if (bookedTablesId.includes(String(id))) {
         putRedBigTable(id)
         deleteTableActiveImage(id)
     } else {
         putGreenBigTable(id)
         addTableActiveImage(id)
+        addOnClick(id, day, time)
     }
 }
 
@@ -149,11 +151,22 @@ function addTableActiveImage(id) {
     document.getElementById("table"+id).classList.add("activeImage")
 }
 
-function putTable(bookedTablesId, id) {
+function sendPost(id, day, time) {
+    document.getElementById("formId").value = id
+    document.getElementById("formDay").value = day
+    document.getElementById("formTime").value = time
+    document.getElementById("form").submit()
+}
+
+function addOnClick(id, day, time) {
+    document.getElementById("table"+id).onclick = function() {sendPost(id, day, time)}
+}
+
+function putTable(bookedTablesId, id, day, time) {
     if (id == 5 || id == 7) {
-        putBigTable(bookedTablesId,id) 
+        putBigTable(bookedTablesId, id, day, time) 
     } else {
-        putSmallTable(bookedTablesId,id)
+        putSmallTable(bookedTablesId, id, day, time)
     }
 }
 
@@ -171,10 +184,11 @@ function showBookedTables(bookings, dateblock) {
     document.getElementById("timeIcon1").setAttribute( "onClick", "javascript: timeDown(bookings, "+dateblock+");" );
     document.getElementById("timeIcon2").setAttribute( "onClick", "javascript: timeUp(bookings, "+dateblock+");" );
     day = document.getElementById("date"+dateblock).childNodes[1].innerHTML.slice(0,2);
+    fullday = document.getElementById("date"+dateblock).childNodes[1].innerHTML
     document.getElementById("date"+dateblock).classList.add("dateBlockChosed")
     time = document.getElementById("timeblock").innerHTML
     bookedTablesId = getBookedTablesId(bookings, day, time)
     for (var id=1; id<8; id++) {
-        putTable(bookedTablesId, id)
+        putTable(bookedTablesId, id, fullday, time)
     }
 }
