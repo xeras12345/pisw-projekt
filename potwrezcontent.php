@@ -14,16 +14,17 @@
 if(isset($_SESSION["loggedin"])){
     echo '<p class="sectionTitle">TWOJE DANE:</p>';
     echo '
-    <formv id="form" action="potwierdzrezerwacje.php" method="post">
+    <form id="form" action="potwierdzrezerwacje.php" method="post">
     <label><p class="sectionTextBold">Imie i nazwisko: </p></label>
     <input type="text" name="name" id="name" required><br>
     <label><p class="sectionTextBold">Numer telefonu: </p></label>
-    <input type="tel" name="tel" id="tel" pattern="[0-9]{9}" required><br>
+    <input type="tel" pattern="[0-9]{9}" name="tel" id="tel" required><br>
     <label><p class="sectionTextBold">Email: </p></label>
     <input type="email" name="email" id="email" value='.$_SESSION["email1"].'>
     <input type="hidden" name="tableid" id="formtableid">
     <input type="hidden" name="day" id="formday">
     <input type="hidden" name="time" id="formtime">
+    <p class="textMenu">Zaloguj się, aby później zarządzać rezerwacją.</p>
     </form>';
 } else {
     echo '<p class="sectionTitle">TWOJE DANE:</p>';
