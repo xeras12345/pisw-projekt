@@ -14,7 +14,7 @@
             <ul id="menulist">
                 <li><a href="home.php">STRONA GŁÓWNA</a></li>
                 <li><a href="zamowonline.php">ZAMÓW ONLINE</a></li>
-                <li>REZERWACJE</li>
+                <li><a href="rezerwacje.php">REZERWACJE</a></li>
                 <li><a><span id="log" onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></a></li>
             </ul>
         </div>
