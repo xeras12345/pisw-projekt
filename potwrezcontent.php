@@ -1,4 +1,3 @@
-
 <div class="section group">
 
 <div class="col span_2_of_12">
@@ -20,11 +19,10 @@ if(isset($_SESSION["loggedin"])){
     <label><p class="sectionTextBold">Numer telefonu: </p></label>
     <input type="tel" pattern="[0-9]{9}" name="tel" id="tel" required><br>
     <label><p class="sectionTextBold">Email: </p></label>
-    <input type="email" name="email" id="email" value='.$_SESSION["email1"].'>
+    <input type="email" name="email" id="email" value='.$_SESSION["email1"].' readonly>
     <input type="hidden" name="tableid" id="formtableid">
     <input type="hidden" name="day" id="formday">
     <input type="hidden" name="time" id="formtime">
-    <p class="textMenu">Zaloguj się, aby później zarządzać rezerwacją.</p>
     </form>';
 } else {
     echo '<p class="sectionTitle">TWOJE DANE:</p>';
@@ -51,23 +49,30 @@ if(isset($_SESSION["loggedin"])){
 
 <div class="section group">
 
-<div class="col span_4_of_12">
+<div class="col span_5_of_12">
 </div>
 
-<div class="col span_2_of_12">
-</div>
-
-<div class="col span_2_of_12">
-<button onclick=goBack()> Anuluj </button>
+<div class="col span_1_of_12">
 <?php
-echo '<button onclick="formSubmit('.$_POST["tableid"].','.substr($_POST["day"],0,2).','.substr($_POST["day"],3,2).',
+echo '<a><p class="sectionTextBold textMenu" onclick="formSubmit('.$_POST["tableid"].','.substr($_POST["day"],0,2).','.substr($_POST["day"],3,2).',
 '.substr($_POST["time"],0,2).','.substr($_POST["time"],3,2).')">
 Zatwierdź
-</button>'
+</p></a>'
 ?>
+</div>
+
+<div class="col span_1_of_12">
+<a><p class="sectionTextBold textMenu" onclick=goBack()> Anuluj </p></a>
+</div>
+
+<div class="col span_5_of_12">
+</div>
 
 </div>
 
-<div class="col span_4_of_12">
+<div class="section group">
+
+<div class="col span_12_of_12" id="message">
 </div>
+
 </div>

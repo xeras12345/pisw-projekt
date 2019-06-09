@@ -131,6 +131,11 @@ section {
 	letter-spacing: 1px;
 }
 
+.textRezerwacje {
+	text-align: center;
+	letter-spacing: 1px;
+}
+
 .responsiveImageMap {
 	height: auto;
 	width: auto;

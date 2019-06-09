@@ -1,0 +1,35 @@
+.textMenu {
+	text-align: center;
+}
+
+label {
+	display: inline-block;
+	text-align: left;
+	margin: 0;
+}​
+
+form {
+	overflow: hidden;
+  }
+
+input {
+	float:left;
+	clear: both;
+}
+
+.sectionTitle {
+	text-align: center;
+	font-size: 150%;
+	font-weight: bold;
+	letter-spacing: 2px;
+	margin-top: 60px;
+	margin-bottom: 30px;
+}
+
+.sectionTextBold {
+	text-align: center;
+	font-size: 100%;
+	font-weight: bold;
+	letter-spacing: 3px;
+	margin-top: 0px;
+}

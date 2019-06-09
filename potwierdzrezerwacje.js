@@ -8,6 +8,11 @@ Date.prototype.yyyymmdd = function() {
            ].join('-');
   };
 
+function showMessage(message) {
+    html = '<p class="textMenu">'+message+'</p>'
+    document.getElementById("message").innerHTML = html
+}
+
 function formSubmit(tableid, day, month, hours, minutes) {
 
     var d = new Date();
@@ -29,20 +34,20 @@ function formSubmit(tableid, day, month, hours, minutes) {
     
     if (name == "")                                  
     { 
-        window.alert("Wpisz imię i nazwisko."); 
+        showMessage("Ups, zapomniałeś podać imię i nazwisko."); 
     } else if (tel == "")                               
     { 
-        window.alert("Podaj numer telefonu w formacie: 123456789"); 
+        showMessage("Podaj numer telefonu w formacie: 123456789"); 
     } else if (tel.match(/\d/g).length !== 9)
     {
-        window.alert("Podaj numer telefonu w formacie: 123456789");
+        showMessage("Podaj numer telefonu w formacie: 123456789");
     } else if (email != "") {
         if (email.indexOf("@", 0) < 0)                 
         { 
-            window.alert("Podaj prawidłowy adres email."); 
+            showMessage("Podaj prawidłowy adres email."); 
         } else if (email.indexOf(".", 0) < 0)                 
         { 
-            window.alert("Podaj prawidłowy adres email."); 
+            showMessage("Podaj prawidłowy adres email."); 
         } else {
             document.getElementById("form").submit()
         }
