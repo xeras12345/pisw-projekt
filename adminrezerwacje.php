@@ -48,10 +48,10 @@ function wyswietlRezerwacje($rezerwacje) {
         echo '
         <div class="section group">
 
-        <div class="col span_2_of_12">
+        <div class="col span_1_of_12">
             <p class="textRezerwacje">'.substr($rezerwacja["bdate"],8,2).'.'.substr($rezerwacja["bdate"],5,2).'</p>
         </div>
-        <div class="col span_2_of_12">
+        <div class="col span_1_of_12">
             <p class="textRezerwacje">'.substr($rezerwacja["btime"],0,5).'</p>
         </div>
         <div class="col span_2_of_12">
@@ -62,6 +62,9 @@ function wyswietlRezerwacje($rezerwacje) {
         </div>
         <div class="col span_2_of_12">
             <p class="textRezerwacje">'.$rezerwacja["phone"].'</p>
+        </div>
+        <div class="col span_2_of_12">
+            <p class="textRezerwacje">'.$rezerwacja["email"].'</p>
         </div>
         <div class="col span_2_of_12">
             <a><p class="textRezerwacje" onclick="formSubmit('.$action1.','.$rezerwacja["id"].')">Edytuj dane</p></a>
@@ -131,10 +134,10 @@ if (isset($_POST["action"])) {
 
 <div class="section group">
 
-    <div class="col span_2_of_12">
+    <div class="col span_1_of_12">
         <p class="sectionTextBold">Data</p>
     </div>
-    <div class="col span_2_of_12">
+    <div class="col span_1_of_12">
         <p class="sectionTextBold">Godzina</p>
     </div>
     <div class="col span_2_of_12">
@@ -145,6 +148,9 @@ if (isset($_POST["action"])) {
     </div>
     <div class="col span_2_of_12">
         <p class="sectionTextBold">Telefon</p>
+    </div>
+    <div class="col span_2_of_12">
+        <p class="sectionTextBold">Email</p>
     </div>
     <div class="col span_2_of_12">
     </div>
