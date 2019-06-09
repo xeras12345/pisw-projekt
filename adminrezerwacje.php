@@ -18,40 +18,12 @@
 
 <?php
 include("header.php");
-include("wymaganylogin.php");
-require_once "connect.php";
+include("wymaganyadmin.php");
 
-function czyAdmin($link) {
-    $sql = 'SELECT id, email, isadmin FROM users WHERE email = ?';
-        if($stmt = mysqli_prepare($link, $sql)){
-            mysqli_stmt_bind_param($stmt, "s", $_SESSION['email1']);
-            if(mysqli_stmt_execute($stmt)){
-                mysqli_stmt_store_result($stmt);  
-            } else {
-                echo "Ups! Coś poszło nie tak, spróbuj ponownie później";
-            }
-        } else {
-            echo "Coś nie tak z sql squery: " . mysqli_error($link);
-        }
-        mysqli_stmt_bind_result($stmt, $id, $email, $isadmin1);
-        while (mysqli_stmt_fetch($stmt)) {
-            $isadmin = $isadmin1;
-        }
-        mysqli_stmt_close($stmt);
-        return $isadmin;
-    }
-
-if (czyAdmin($link) == 1) {
-echo '<script>window.location = "admin.php"</script>';
-    }
-?>
-
-<?php
 function pobierzRezerwacje($link) { 
     $sql = "SELECT * FROM bookings WHERE DATE(bdate) BETWEEN DATE(CURRENT_DATE()) AND DATE(CURRENT_DATE() + INTERVAL 7 DAY)
-    AND email = ?";
+    ORDER BY bdate, btime";
     if($stmt = mysqli_prepare($link, $sql)){
-        mysqli_stmt_bind_param($stmt, "s", $_SESSION["email1"]);
         if(mysqli_stmt_execute($stmt)){
             mysqli_stmt_store_result($stmt);  
         } else {
@@ -152,7 +124,7 @@ if (isset($_POST["action"])) {
 <div class="section group">
 
     <div class="col span_12_of_12">
-        <p class="sectionTitle">TWOJE REZERWACJE</p>
+        <p class="sectionTitle">REZERWACJE</p>
     </div>
 
 </div>

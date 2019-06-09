@@ -19,7 +19,7 @@ if(isset($_SESSION["loggedin"])){
     <label><p class="sectionTextBold">Numer telefonu: </p></label>
     <input type="tel" pattern="[0-9]{9}" name="tel" id="tel" required><br>
     <label><p class="sectionTextBold">Email: </p></label>
-    <input type="email" name="email" id="email" value='.$_SESSION["email1"].', readonly>
+    <input type="email" name="email" id="email" value='.$_SESSION["email1"].' readonly>
     <input type="hidden" name="tableid" id="formtableid">
     <input type="hidden" name="day" id="formday">
     <input type="hidden" name="time" id="formtime">
