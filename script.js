@@ -41,6 +41,16 @@ function changemenu() {
     var newelement = document.createElement('li')
     newelement.innerHTML = '<a href="logout.php">WYLOGUJ</a>';
     menu.appendChild(newelement);
+
+}
+
+
+var okno = document.getElementById('okno_potwierdzajace');
+window.onclick = function(event) {
+    if (event.target == okno) {
+        okno.style.display = "none";
+        location.href = "koszyk.php";
+    }
 }
 
 

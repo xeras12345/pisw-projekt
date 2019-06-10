@@ -69,7 +69,7 @@
     </div>
 
 
-    <form action="#">
+<form action="/pisw-projekt/podsumowanie.php" method="post">
     <div id="dane">
 
         <h1>Twoje Dane:</h1>
@@ -146,11 +146,26 @@
 
     <div style="clear:both;"></div>
 
-    <input type="submit" value="Zamów" id="przycisk_zamow"/>
-    </form>
     
+    <div id="przycisk_zamow" onclick="document.getElementById('okno_potwierdzajace').style.display='block'">Złóż zamówienie</div>
+    
+    <div id="okno_potwierdzajace" class="okno">
+    <div class="okno-content animate">
+    <h4 style="text-align:center">Czy na pewno chcesz złożyć zamówienie?</h4></br>
+        <div>
+            <input type="submit"  class="btn" value="Tak" >
+            <input type="button"  class="btn" value="Nie" onclick="document.getElementById('okno_potwierdzajace').style.display='none'">
+        </div>
+    </div>
 
-    
+    </form>
+
+
+    </div>
+
+    </div>
+
+        
 
 
 
