@@ -456,3 +456,219 @@ footer {
 }
 
 
+
+.btnkoszyk{
+	width: 60%;
+	background: none;
+	border: 2px solid black;
+	color: black;
+	padding: 2px 2px;
+	font-size: 14px;
+	cursor: pointer;
+	margin: 8px 26px;
+	
+}
+
+.btnkoszyk:hover {
+	  opacity: 0.8;
+	}
+	
+
+.box {
+	background: #000;
+	border-radius: 0px 4px 4px 0px;
+	left: -204px;
+	padding: 4px 4px 4px 0px;
+	position: fixed;
+	top: 500px;
+	transition: transform 0.4s;
+	width: 200px;
+	z-index: 1;
+}
+
+.box--right {
+	border-radius: 4px 0px 0px 4px;  
+	left: auto;
+	right: -204px;
+	padding: 4px 0px 4px 4px;
+}
+											
+.box:hover {
+	transform: translateX(204px);
+}
+
+.box--right:hover {
+	transform: translateX(-204px);
+}
+											
+.box .box__content {
+	background: #fff;
+	min-height: 200px;
+	padding: 10px;
+	position: relative;
+}
+											
+.box .box__title {
+	background: #fff;
+	border: solid #000;
+	border-radius: 0px 0px 4px 4px;
+	border-width: 0px 4px 4px;
+	cursor: default;
+	font-size: 16px;
+	height: 30px;
+	line-height: 30px;
+	position: absolute;
+	right: -74px;
+	text-align: center;
+	top: 70px;
+	transform: rotate(-90deg);
+	width: 106px;
+}
+
+.box--right .box__title {
+	border-radius: 4px 4px 0px 0px;
+	border-width: 4px 4px 0px;
+	position: absolute;
+	left: -74px;
+}
+
+
+#dane
+{	
+	margin-top:50px;
+	border: 3px solid #222222;
+	height: 500px;
+	padding: 10px;
+}
+
+#dane h1{
+	text-align: center;
+
+}
+
+
+#dane_osobowe
+{
+	width: 49.8%;
+	float:left;
+	border-right: 1px solid gray;
+	height: 80%
+}
+
+#dane_osobowe h3
+{
+	text-align: center;
+}
+#dane_adresowe
+{
+	width: 50%;
+	float:left;
+}
+
+#dane_adresowe h3
+{
+	text-align: center;
+}
+
+#przycisk_zamow
+{
+	border: 3px solid #222222;
+	margin-top: 50px;
+	width: 30%;
+	text-align: center;
+	margin-left:auto;
+	margin-right:auto;
+	font-size: 32px;
+}
+
+#kontener
+{
+	width: 900px;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 900px;
+	
+}
+
+#kontener_koszyk
+{
+	margin-top: 50px;
+	text-align: center;
+	border: 3px solid #222222;
+	widows: 100%;
+}
+
+.okno_dane
+{
+	widows: 100%;
+	text-align: center;
+}
+
+.ikonka
+{
+	margin-top: 15px;
+	float:left;
+
+
+}
+
+.zestaw
+{
+	float: left;
+	width: 65%;
+	margin-left:75px;
+	margin-top:20px;
+
+}
+
+fieldset
+{
+	
+}
+
+.input_koszyk{
+	margin-left: 20px;
+	float: left;
+	widows: 100%;
+	overflow: hidden;
+	font-size: 20px;
+	padding: 8px 0;
+	border-bottom: 1px solid black;
+  }
+ 
+
+.input_koszyk input{
+	border: none;
+	outline: none;
+	background: none;
+	color: black;
+	font-size: 18px;
+	width: 100%;
+	float: left;
+	margin: 0 10px;
+  }
+
+
+.kod
+  {
+	margin-left: 115px;
+	float: left;
+	widows: 100%;
+	overflow: hidden;
+	font-size: 20px;
+	padding: 8px 0;
+	border-bottom: 1px solid black;
+
+  }
+
+  .kod input
+  {
+	border: none;
+	outline: none;
+	background: none;
+	color: black;
+	font-size: 18px;
+	width: 100%;
+	float: left;
+	margin: 0 10px;
+  }
