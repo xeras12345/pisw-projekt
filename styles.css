@@ -539,6 +539,7 @@ footer {
 	border: 3px solid #222222;
 	height: 500px;
 	padding: 10px;
+	height: 100%;
 }
 
 #dane h1{
@@ -552,7 +553,6 @@ footer {
 	width: 49.8%;
 	float:left;
 	border-right: 1px solid gray;
-	height: 80%
 }
 
 #dane_osobowe h3
@@ -574,11 +574,16 @@ footer {
 {
 	border: 3px solid #222222;
 	margin-top: 50px;
-	width: 30%;
-	text-align: center;
-	margin-left:auto;
-	margin-right:auto;
-	font-size: 32px;
+	width: 200px;
+	font-size: 26px;
+	cursor: pointer;
+	margin-left: 350px;
+
+}
+#przycisk_zamow:hover
+{
+	background: #999999;
+	color: white;
 }
 
 #kontener
@@ -586,8 +591,7 @@ footer {
 	width: 900px;
 	margin-left: auto;
 	margin-right: auto;
-	min-height: 900px;
-	
+
 }
 
 #kontener_koszyk
@@ -671,4 +675,11 @@ fieldset
 	width: 100%;
 	float: left;
 	margin: 0 10px;
+  }
+
+  .uwagi
+  {
+	margin-top: 40px;
+	text-align: center;
+	margin-bottom: 30px;
   }
