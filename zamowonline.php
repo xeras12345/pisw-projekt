@@ -16,6 +16,7 @@
   
     
     <?php
+    
     include("header.php");
     require_once "connect.php";
     $link->query("SET NAMES 'utf8'"); //ustawienie kodowania
@@ -29,6 +30,7 @@
                     'item_name' => $_POST["hidden_name"],
                     'product_price' => $_POST["hidden_price"],
                     'item_quantity' => $_POST["quantity"],
+                  
                 );
                 $_SESSION["cart"][$count] = $item_array;
                
@@ -150,7 +152,7 @@
  
                             
                     ?>          <div class="section group">
-                                <form method="post" action="zamowonline.php?action=add&id=<?php echo $row["id"]; ?>">
+                                <form id="myForm" method="post" action="zamowonline.php?action=add&id=<?php echo $row["id"]; ?>">
                                 <div class="col span_2_of_12"></div>
                                 <div class="col span_4_of_12" ><h5 class="sectionTextBold textMenu"><?php echo strtoupper($row["nazwa"]); ?></h5>
                                 <p class="textMenu"><?php echo $row["sklad"]; ?></p></div>
