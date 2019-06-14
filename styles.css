@@ -705,22 +705,30 @@ fieldset
 	padding-bottom: 50px;
 }
 
-#podsumowanie_kontener
-{
-	width: 100%;
-	margin-left: auto;
-	margin-right: auto;
 
+
+
+
+
+
+.niezalogowanyloguj input
+{
+
+	width: 60%;
+	background: none;
+	border: 2px solid black;
+	color: black;
+	padding: 14px 20px;
+	font-size: 18px;
+	cursor: pointer;
+
+	
 }
 
-#podsumowanie
+.niezalogowanyloguj input:hover
 {
-	width: 100%;
 
+	opacity:0.8;	
 }
 
-#podsumowanie h1,p
-{
-	text-align: center;
-}
 

@@ -15,7 +15,15 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900&display=swap&subset=latin-ext" rel="stylesheet">
   
     
+          <?php
+        if (isset($_POST['submitform']))
+        {   
+        
+            echo("Zamówienie zostało złożone poprawnie, sprawdź szczegóły w swoim koncie!");
+        } 
+        ?>
     <?php
+    
     
     include("header.php");
     require_once "connect.php";
@@ -220,6 +228,7 @@
             </form>
         </div>
  
+
    
  
  <?php include("footer.php"); ?>

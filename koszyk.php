@@ -45,7 +45,9 @@
             if(!empty($_SESSION["cart"])){
                 $outall = '';
                 foreach ($_SESSION["cart"] as $key => $value) {
+                    
                     ?>
+                    
                     <?php $produkty = $value["item_name"];?>
 
                     <tr>
@@ -54,7 +56,10 @@
                         <td><?php echo $value["item_quantity"]; ?></td>
                         <td><?php echo $value["product_price"]; ?> zł</td>
                         <td><?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?> zł</td>
+                        <a href="zamowonline.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span id="click"></span></a>
                         
+                        
+                           
                     </tr>
                     <?php
                     $total = $total + ($value["item_quantity"] * $value["product_price"]);
@@ -64,7 +69,7 @@
                 
                     ?>
                     
-                    
+           
                 
                 
                     
@@ -81,122 +86,110 @@
         <h3 style="text-align:center;">Suma:<?php echo number_format($total, 2); ?> zł </h3></br>
             
         
-  
-        <a href="zamowonline.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span id="click"></span></a>
-        
-
-        <script>
-        function reset_danych_po_zatwierdzeniu() {
-        document.getElementById("click").click();
-        }
-        </script>
 
     
 
     </div>
 
+<?php 
+    if(isset($_SESSION["loggedin"])){
 
-<form id="myForm" action="/pisw-projekt/koszyk.php" method="post">
-    <div id="dane">
+        echo'<form id="myForm" action="koszyk.php" method="post">
+        <div id="dane">
 
-        <h1>Twoje Dane:</h1>
-        
-        <div id="dane_osobowe">
-            <h3>Dane Osobowe:</h3>
-            <div class="zestaw">
-                <div class="ikonka"><i class="fas fa-user"></i></div>
-                <div class="input_koszyk"><input type="text" placeholder="Wpisz Imię i Nazwisko" /></div>
-            </div>
-            <div class="zestaw">
-                <div class="ikonka"><i class="fas fa-envelope"></i></div>
-                <div class="input_koszyk"><input type="text" placeholder="Wpisz email" name="email" /></div>
-            </div>
-            <div class="zestaw">
-                <div class="ikonka"><i class="fas fa-phone-alt"></i></div>
-                <div class="input_koszyk"><input type="text" name="numer" placeholder="Numer telefonu" /></div>
-            </div>
-
-            <div class="zestaw">
-                <fieldset>
-
-                    <legend> Rodzaj dostawy </legend>
-                    
-                    <div><label><input type="radio" value="1" name="dostawa" checked required> Odbiór osobisty</label></div>
-                    <div><label><input type="radio" value="2" name="dostawa" required> Do domu</label></div>
-                
-            </div>
-            <div class="zestaw">
-                <fieldset>
-
-                    <legend> Metoda płatności </legend>
-                    
-                    <div><label><input type="radio" value="1" name="platnosc" checked disabled> Przy odbiorze</label></div>
-                  
-                
-            </div>
-
-
+            <h1>Twoje Dane:</h1>
             
-        </div>
-
-        <div id="dane_adresowe">
-            <h3>Dane Adresowe:</h3>
-            <div class="zestaw">
-                <div class="ikonka"><i class="fas fa-address-card"></i></div>
-                <div class="input_koszyk"><input type="text" name="adres" placeholder="Wpisz adres zameldowania" /></div>
-            </div>
-            <div class="zestaw">
-                <div class="ikonka"><i class="fas fa-city"></i></div>
-                <div class="input_koszyk"><input type="text" name="miasto" placeholder="Wpisz miasto" /></div>
-            </div>
-            
-            <div class="kod">
-                <p>Kod pocztowy:</p>
-                <div class="input_kod"><input type="text" placeholder="np. 58-100" /></div>
-            </div>
-            
-
-    
-        </div>
-        <div style="clear:both;"></div>
-
-        <div class="uwagi">
-            <label>Uwagi do zamówienia</label></br>
-            <textarea name="uwagi" id="komentarz" rows="4" cols="80" placeholder="Jeśli masz jakieś uwagi, opisz je tutaj..."></textarea>
-        </div>
-        
-
-
-    </div>
-    
-    
-
-        <div style="clear:both;"></div>
-
-        
-        <div id="przycisk_zamow" onclick="document.getElementById('okno_potwierdzajace').style.display='block'">Złóż zamówienie</div>
-        <div id="okno_potwierdzajace" class="okno">
-            <div class="okno-content animate">
-            <h4 style="text-align:center">Czy na pewno chcesz złożyć zamówienie?</h4></br>
-                <div>
-                    <input name="submitform" type="submit"  class="btn" value="Tak" onclick="reset_danych_po_zatwierdzeniu();"> 
-                    <input type="button"  class="btn" value="Nie" onclick="document.getElementById('okno_potwierdzajace').style.display='none'">
+            <div id="dane_osobowe">
+                <h3>Dane Osobowe:</h3>
+                <div class="zestaw">
+                    <div class="ikonka"><i class="fas fa-user"></i></div>
+                    <div class="input_koszyk"><input type="text" placeholder="Wpisz Imię i Nazwisko" /></div>
                 </div>
-        </div>
+                <div class="zestaw">
+                    <div class="ikonka"><i class="fas fa-envelope"></i></div>
+                    <div class="input_koszyk"><input type="email" name="email" value='.$_SESSION["email1"].' readonly/></div>
+                </div>
+                <div class="zestaw">
+                    <div class="ikonka"><i class="fas fa-phone-alt"></i></div>
+                    <div class="input_koszyk"><input type="text" name="numer" placeholder="Numer telefonu" /></div>
+                </div>
 
-    </form>
-        <!--- Jeśli zatwierdzony jest form o id submitform to funkcja JS przenosi do  pliku podsumowanie.php--->
+                <div class="zestaw">
+                    <fieldset>
+
+                        <legend> Rodzaj dostawy </legend>
+                        
+                        <div><label><input type="radio" value="1" name="dostawa" checked required> Odbiór osobisty</label></div>
+                        <div><label><input type="radio" value="2" name="dostawa" required> Do domu</label></div>
+                    
+                </div>
+                <div class="zestaw">
+                    <fieldset>
+
+                        <legend> Metoda płatności </legend>
+                        
+                        <div><label><input type="radio" value="1" name="platnosc" checked disabled> Przy odbiorze</label></div>
+                    
+                    
+                </div>
+
+
+                
+            </div>
+
+            <div id="dane_adresowe">
+                <h3>Dane Adresowe:</h3>
+                <div class="zestaw">
+                    <div class="ikonka"><i class="fas fa-address-card"></i></div>
+                    <div class="input_koszyk"><input type="text" name="adres" placeholder="Wpisz adres dostawy" /></div>
+                </div>
+                <div class="zestaw">
+                    <div class="ikonka"><i class="fas fa-city"></i></div>
+                    <div class="input_koszyk"><input type="text" name="miasto" placeholder="Wpisz miasto" /></div>
+                </div>
+                
+                <div class="kod">
+                    <p>Kod pocztowy:</p>
+                    <div class="input_kod"><input type="text" placeholder="np. 58-100" /></div>
+                </div>
+                
+
+        
+            </div>
+            <div style="clear:both;"></div>
+
+            <div class="uwagi">
+                <label>Uwagi do zamówienia</label></br>
+                <textarea name="uwagi" id="komentarz" rows="4" cols="80" placeholder="Jeśli masz jakieś uwagi, opisz je tutaj..."></textarea>
+            </div>
+            
+
+
+        </div>
+        
+        
+
+            <div style="clear:both;"></div>'
+            ?>
+            
+            <div id="przycisk_zamow" onclick="document.getElementById('okno_potwierdzajace').style.display='block'">Złóż zamówienie</div>
+            <div id="okno_potwierdzajace" class="okno">
+                <div class="okno-content animate">
+                <h4 style="text-align:center">Czy na pewno chcesz złożyć zamówienie?</h4></br>
+                    <div>
+                        <input id="submitform" name="submitform" type="submit"  class="btn" value="Tak" onclick="usun();">
+                        <input type="button"  class="btn" value="Nie" onclick="document.getElementById('okno_potwierdzajace').style.display='none'">
+                    </div>
+            </div>
+            </form>
         <?php
-        if (isset($_POST['submitform']))
-        {   
-        ?>
+
         
-        <script type="text/javascript">
-            window.location = "/pisw-projekt/podsumowanie.php";
-        </script>      
-        
-        <?php } 
+        } 
         ?>
+    
+  
+
         
     </div>
 
@@ -211,36 +204,54 @@
 </div>
 
 <?php
-
-    
-    $kwota = $kwota;
-    $email = $_POST['email'];
-    $produkty = $outall;
-    $adres = $_POST['adres'];
-    $miasto = $_POST['miasto'];
-    $numer = $_POST['numer'];
-    $uwagi = $_POST['uwagi'];
-    
     require_once "connect.php";
-    $link->query("SET NAMES 'utf8'");
-    if ($link->connect_error) {
-        die("Connection failed: " . $link->connect_error);
-    } 
-    
-    $sql = "INSERT INTO zamowienia (email, kwota, produkty, adres, miasto, numer, uwagi, status)
-    VALUES ('$email', $kwota, '$produkty','$adres','$miasto','$numer','$uwagi',0)";
-    
-    if ($link->query($sql) === TRUE) {
-        
-    } else {
-        echo "Error: " . $sql . "<br>" . $link->error;
-    }
-    
-    
-    $link->close();
+    $date = date('Y-m-d');
+    $email = isset($_POST['email']) ? $_POST['email'] : '';
+    $adres = isset($_POST['adres']) ? $_POST['adres'] : '';
+    $miasto = isset($_POST['miasto']) ? $_POST['miasto'] : '';
+    $numer = isset($_POST['numer']) ? $_POST['numer'] : '';
+    $uwagi = isset($_POST['uwagi']) ? $_POST['uwagi'] : '';
+    if (isset($_POST['submitform']))
+     {   
+
+        $link->query("SET NAMES 'utf8'");
+        if ($link->connect_error) {
+            die("Connection failed: " . $link->connect_error);
+        } 
+
+        $sql = "INSERT INTO zamowienia (email, kwota, produkty, adres, miasto, numer, uwagi, status, datazamowienia)
+        VALUES ('$email', $kwota, '$outall','$adres','$miasto','$numer','$uwagi',0,'$date')";
+
+        if ($link->query($sql) === TRUE) {
+            
+        } else {
+            echo "Error: " . $sql . "<br>" . $link->error;
+        }
+
+
+        $link->close();
+        ?>
+        <script>
+            window.location = "podsumowanie.php";
+        </script>
+
+        <?php
+     }
 
 
 ?>
+  
+    
+
+  <script>
+   function usun()
+   {
+    document.getElementById('click').click();
+   }
+ </script>
+
+    
+
 
 
 

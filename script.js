@@ -54,3 +54,10 @@ window.onclick = function(event) {
 }
 
 
+
+
+
+function usun()
+{
+ document.getElementById('click').click();
+}
