@@ -64,6 +64,7 @@ function pobierzZamowienieAktualne($link) {
 
 } 
 function wyswietlZamowieniaHistoryczne($zamowienia) {
+    $action2 = 2;
     foreach ($zamowienia as $zamowienie) {
         echo'<div class="section group">
         </div>
@@ -84,7 +85,7 @@ function wyswietlZamowieniaHistoryczne($zamowienia) {
             <p class="textRezerwacje">'.$zamowienie["status"].'</p>
             </div>
             <div class="col span_2_of_12">
-            <a><p class="textRezerwacje" >Usuń zamówienie</p></a>
+            <a><p class="textRezerwacje" onclick="formSubmit('.$action2.','.$zamowienie["id"].')">Usuń zamówienie</p></a>
 
             </div>
     
@@ -93,6 +94,8 @@ function wyswietlZamowieniaHistoryczne($zamowienia) {
 }
 }
 function wyswietlZamowieniaAktualne($zamowienia) {
+    $action1 = 1;
+    $action2 = 2;
     foreach ($zamowienia as $zamowienie) {
         echo'<div class="section group">
         </div>
@@ -112,8 +115,8 @@ function wyswietlZamowieniaAktualne($zamowienia) {
             <p class="textRezerwacje">'.$zamowienie["status"].'</p>
             </div>
             <div class="col span_2_of_12">
-            <a><p class="textRezerwacje" >Zmień status na zakończone</p></a>
-            <a><p class="textRezerwacje" >Anuluj zamówienie</p></a>
+            <a><p class="textRezerwacje" onclick="formSubmit('.$action1.','.$zamowienie["id"].')">Zmień status na zakończone</p></a>
+            <a><p class="textRezerwacje" onclick="formSubmit('.$action2.','.$zamowienie["id"].')">Anuluj zamówienie</p></a>
             </div>
     
     </div>';
@@ -125,7 +128,7 @@ function wyswietlZamowieniaAktualne($zamowienia) {
 
 if (isset($_POST["action"])) {
     if ($_POST["action"] == 1) {
-        $sql = 'UPDATE bookings SET bname="'.$_POST["name"].'", phone="'.$_POST["tel"].'" WHERE id='.$_POST["id"];
+        $sql = 'UPDATE zamowienia SET status="zakończone" WHERE id='.$_POST["id"].'';
         if (mysqli_query($link, $sql)) {
             echo '
             <div class="section group">
@@ -138,7 +141,7 @@ if (isset($_POST["action"])) {
             <div class="section group">
         
                 <div class="col span_12_of_12">
-                    <p class="sectionTextBold">Pomyślnie zaktualizowano rezerwację.</p>
+                    <p class="sectionTextBold">Pomyślnie zaktualizowano status zamówienia.</p>
                 </div>
         
             </div>';
@@ -146,7 +149,7 @@ if (isset($_POST["action"])) {
             echo "Error updating record: " . mysqli_error($link);
          }
     } else if ($_POST["action"] == 2) {
-        $sql = 'DELETE FROM bookings WHERE id='.$_POST["id"];
+        $sql = 'DELETE FROM zamowienia WHERE id='.$_POST["id"];
         if (mysqli_query($link, $sql)) {
             echo '
             <div class="section group">
@@ -159,7 +162,7 @@ if (isset($_POST["action"])) {
             <div class="section group">
         
                 <div class="col span_12_of_12">
-                    <p class="sectionTextBold">Pomyślnie anulowano rezerwację.</p>
+                    <p class="sectionTextBold">Pomyślnie anulowano zamówienie.</p>
                 </div>
         
             </div>';
@@ -245,6 +248,11 @@ wyswietlZamowieniaHistoryczne(pobierzZamowienieHistoryczne($link))
 ?>
 </section> 
 <div class="section group"></div>
+
+<form id="form" action="adminzamowienia.php" method="post">
+    <input type="hidden" name="action" id="formaction">
+    <input type="hidden" name="id" id="formid">
+</form>
 <?php
 include("footer.php");
 mysqli_close($link);
