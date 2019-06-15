@@ -109,7 +109,7 @@
                     <div class="section group">
                         <div class="col span_12_of_12">
                         <div class="ikonka"><i class="fas fa-user"></i></div>
-                        <div class="input_koszyk"><input type="text" placeholder="Wpisz Imię i Nazwisko" /></div>
+                        <div class="input_koszyk"><input type="text" placeholder="Imię i Nazwisko*" required/></div>
                         </div>
                     </div>
                     <div class="section group">
@@ -121,7 +121,7 @@
                     <div class="section group">
                         <div class="col span_12_of_12">
                         <div class="ikonka"><i class="fas fa-phone-alt"></i></div>
-                        <div class="input_koszyk"><input type="text" name="numer" placeholder="Numer telefonu" /></div>
+                        <div class="input_koszyk"><input type="text" name="numer" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" placeholder="XXX-XXX-XXX*" required /></div>
                         </div>
                     </div>
 
@@ -155,20 +155,20 @@
                     <div class="section group">
                         <div class="col span_12_of_12">
                         <div class="ikonka"><i class="fas fa-address-card"></i></div>
-                        <div class="input_koszyk"><input type="text" name="adres" id="adres" placeholder="Ulica i numer lokalu" /></div>
+                        <div class="input_koszyk"><input type="text" name="adres" id="adres" placeholder="Ulica i numer lokalu*" required/></div>
                         </div>
                     </div>
                     <div class="section group">
                         <div class="col span_12_of_12">
                         <div class="ikonka"><i class="fas fa-city"></i></div>
-                        <div class="input_koszyk"><input type="text" name="miasto" id="miasto" placeholder="Wpisz miasto" /></div>
+                        <div class="input_koszyk"><input type="text" name="miasto" id="miasto" placeholder="Wpisz miasto*" required/></div>
                         </div>
                     </div>
                     
                     <div class="section group">
                         <div class="col span_12_of_12">
                         <div class="ikonka"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="input_koszyk"><input type="text" name="miasto" id="kod" placeholder="Kod pocztowy(XX-XXX)" /></div>
+                        <div class="input_koszyk"><input type="text" name="miasto" id="kod" pattern="[0-9]{2}-[0-9]{3}" placeholder="Kod pocztowy(XX-XXX)*" required /></div>
                         </div>
                     </div>
                     <div class="section group">
@@ -188,8 +188,9 @@
                 ?>    
     </section>
                 <section>
-             
+ 
                 <div class="section group">
+                    <p class="textRezerwacje">Pola oznaczone * są obowiązkowe!</p>
                     <div id="przycisk_zamow" onclick="document.getElementById('okno_potwierdzajace').style.display='block'"><p class="sectionTextBold textMenu">Złóż zamówienie</p></div>
                     <div id="okno_potwierdzajace" class="okno">
                         <div class="okno-content animate">
@@ -217,6 +218,53 @@
 
     </div>
     </section>  
+    <script>
+   function usun()
+   {
+    document.getElementById('click').click();
+   }
+ </script>
+
+<script>
+    function sprawdzenie()
+    {
+       
+        if(document.getElementById("osobisty").checked) {
+            nasz_adres();
+        }else if(document.getElementById("dom").checked) {
+            adres_uzytkownika();
+        }
+    }
+                      
+
+   function nasz_adres()
+   {
+       document.getElementById("adres").value= 'Kuźnicza 15';
+       document.getElementById("adres").readOnly = true;
+       document.getElementById("miasto").value= 'Wrocław';
+       document.getElementById("miasto").readOnly = true;
+       document.getElementById("kod").value='53-635';
+       document.getElementById("kod").readOnly = true;
+   }
+   function adres_uzytkownika()
+   {
+       document.getElementById("adres").value='';
+       document.getElementById("adres").disabled = false;
+       document.getElementById("miasto").value='';
+       document.getElementById("miasto").disabled = false;
+       document.getElementById("kod").value='';
+       document.getElementById("kod").disabled = false;
+   }
+
+ 
+
+ 
+ </script>
+
+
+    
+
+
 
     <?php
         require_once "connect.php";
@@ -226,6 +274,7 @@
         $miasto = isset($_POST['miasto']) ? $_POST['miasto'] : '';
         $numer = isset($_POST['numer']) ? $_POST['numer'] : '';
         $uwagi = isset($_POST['uwagi']) ? $_POST['uwagi'] : '';
+        
         if (isset($_POST['submitform']))
         {   
 
@@ -235,7 +284,7 @@
             } 
 
             $sql = "INSERT INTO zamowienia (email, kwota, produkty, adres, miasto, numer, uwagi, status, datazamowienia)
-            VALUES ('$email', $kwota, '$outall','$adres','$miasto','$numer','$uwagi',0,'$date')";
+            VALUES ('$email', $kwota, '$outall','$adres','$miasto','$numer','$uwagi','oczekiwane','$date')";
 
             if ($link->query($sql) === TRUE) {
                 
@@ -256,52 +305,6 @@
 
     ?>
 </div>
-    
-
-  <script>
-   function usun()
-   {
-    document.getElementById('click').click();
-   }
- </script>
-
-<script>
-    function sprawdzenie()
-    {
-       
-        if(document.getElementById("osobisty").checked) {
-            nasz_adres();
-        }else if(document.getElementById("dom").checked) {
-            adres_uzytkownika();
-        }
-    }
-                           
-
-   function nasz_adres()
-   {
-       document.getElementById("adres").value='Kuźnicza 15';
-       document.getElementById("adres").disabled = true;
-       document.getElementById("miasto").value='Wrocław';
-       document.getElementById("miasto").disabled = true;
-       document.getElementById("kod").value='53-635';
-       document.getElementById("kod").disabled = true;
-   }
-   function adres_uzytkownika()
-   {
-       document.getElementById("adres").value='';
-       document.getElementById("adres").disabled = false;
-       document.getElementById("miasto").value='';
-       document.getElementById("miasto").disabled = false;
-       document.getElementById("kod").value='';
-       document.getElementById("kod").disabled = false;
-   }
-
- 
-
- 
- </script>
-
-
     
 
 

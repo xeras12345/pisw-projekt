@@ -45,7 +45,50 @@ function pobierzZamowienieHistoryczne($link) {
 
 if (!isset($_POST["action"])) {
     echo '<script>window.location = "home.php"</script>';
-} else if ($_POST["action"] == 2) {
+} else if ($_POST["action"] == 1){
+    echo '
+        <form id="form" action="adminzamowienia.php" method="post">
+        <input type="hidden" value="'.$_POST["action"].'" name="action" id="formaction">
+        <input type="hidden" value="'.$_POST["id"].'" name="id" id="formid">
+        </form>
+    
+        <div class="section group">
+    
+        <div class="col span_12_of_12">
+        </div>
+    
+        </div>
+    
+        <div class="section group">
+    
+            <div class="col span_12_of_12">
+                <p class="sectionTextBold"> Czy na pewno chcesz zmienić status zamówienia na zakończone? </p>
+            </div>
+    
+        </div>
+        
+        <div class="section group">
+    
+        <div class="col span_5_of_12">
+        </div>
+    
+        <div class="col span_1_of_12">
+            <a><p class="sectionTextBold textMenu" onclick="formSubmit()">
+            Tak
+            </p></a>
+        </div>
+    
+        <div class="col span_1_of_12">
+        <a><p class="sectionTextBold textMenu" onclick=goBack()> Nie </p></a>
+        </div>
+    
+        <div class="col span_5_of_12">
+        </div>
+    
+        </div>';
+
+}
+    else if ($_POST["action"] == 2) {
         $zamowienie = pobierzZamowienieHistoryczne($link);
         echo '
         <form id="form" action="adminzamowienia.php" method="post">
