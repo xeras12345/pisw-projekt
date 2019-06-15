@@ -131,8 +131,8 @@
 
                             <legend> Rodzaj dostawy </legend>
                             
-                            <div><label><input type="radio" value="1" name="dostawa" checked required> Odbiór osobisty</label></div>
-                            <div><label><input type="radio" value="2" name="dostawa" required> Do domu</label></div>
+                            <div><label><input type="radio" value="1" name="dostawa" id="osobisty" required onclick="sprawdzenie();"> Odbiór osobisty</label></div>
+                            <div><label><input type="radio" value="2" name="dostawa" id="dom" required onclick="sprawdzenie();"> Do domu</label></div>
                         </div>
                     </div>
                     <div class="section group">
@@ -155,20 +155,20 @@
                     <div class="section group">
                         <div class="col span_12_of_12">
                         <div class="ikonka"><i class="fas fa-address-card"></i></div>
-                        <div class="input_koszyk"><input type="text" name="adres" placeholder="Ulica i numer lokalu" /></div>
+                        <div class="input_koszyk"><input type="text" name="adres" id="adres" placeholder="Ulica i numer lokalu" /></div>
                         </div>
                     </div>
                     <div class="section group">
                         <div class="col span_12_of_12">
                         <div class="ikonka"><i class="fas fa-city"></i></div>
-                        <div class="input_koszyk"><input type="text" name="miasto" placeholder="Wpisz miasto" /></div>
+                        <div class="input_koszyk"><input type="text" name="miasto" id="miasto" placeholder="Wpisz miasto" /></div>
                         </div>
                     </div>
                     
                     <div class="section group">
                         <div class="col span_12_of_12">
                         <div class="ikonka"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="input_koszyk"><input type="text" name="miasto" placeholder="Kod pocztowy(XX-XXX)" /></div>
+                        <div class="input_koszyk"><input type="text" name="miasto" id="kod" placeholder="Kod pocztowy(XX-XXX)" /></div>
                         </div>
                     </div>
                     <div class="section group">
@@ -206,7 +206,6 @@
                     </div>
                 </div>
                 </form>
-            
 
                 <?php
             
@@ -265,6 +264,43 @@
     document.getElementById('click').click();
    }
  </script>
+
+<script>
+    function sprawdzenie()
+    {
+       
+        if(document.getElementById("osobisty").checked) {
+            nasz_adres();
+        }else if(document.getElementById("dom").checked) {
+            adres_uzytkownika();
+        }
+    }
+                           
+
+   function nasz_adres()
+   {
+       document.getElementById("adres").value='Kuźnicza 15';
+       document.getElementById("adres").disabled = true;
+       document.getElementById("miasto").value='Wrocław';
+       document.getElementById("miasto").disabled = true;
+       document.getElementById("kod").value='53-635';
+       document.getElementById("kod").disabled = true;
+   }
+   function adres_uzytkownika()
+   {
+       document.getElementById("adres").value='';
+       document.getElementById("adres").disabled = false;
+       document.getElementById("miasto").value='';
+       document.getElementById("miasto").disabled = false;
+       document.getElementById("kod").value='';
+       document.getElementById("kod").disabled = false;
+   }
+
+ 
+
+ 
+ </script>
+
 
     
 
