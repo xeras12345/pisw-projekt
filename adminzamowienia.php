@@ -21,10 +21,10 @@ include("header.php");
 include("wymaganyadmin.php");
 $link->query("SET NAMES 'utf8'");
 
-function pobierzRezerwacje($link) { 
-    $sql = "SELECT * FROM bookings WHERE DATE(bdate) BETWEEN DATE(CURRENT_DATE()) AND DATE(CURRENT_DATE() + INTERVAL 7 DAY)
-    ORDER BY bdate, btime";
+function pobierzZamowienieHistoryczne($link) {  
+    $sql = "SELECT * FROM zamowienia WHERE status='zakończone' ORDER BY datazamowienia DESC";
     if($stmt = mysqli_prepare($link, $sql)){
+        
         if(mysqli_stmt_execute($stmt)){
             mysqli_stmt_store_result($stmt);  
         } else {
@@ -33,48 +33,95 @@ function pobierzRezerwacje($link) {
     } else {
         echo "Coś nie tak z sql squery: " . mysqli_error($link);
     }
-    mysqli_stmt_bind_result($stmt, $id, $bdate, $btime, $tableid, $bname, $phone, $email);
-    $rezerwacje = array();
+    mysqli_stmt_bind_result($stmt, $id, $email, $kwota, $produkty, $adres, $miasto, $numer, $uwagi, $status, $datazamowienia);
+    $zamowienia = array();
     while (mysqli_stmt_fetch($stmt)) {
-        array_push($rezerwacje, array("id" => $id, "bdate" => $bdate, "btime" => $btime, "tableid" => $tableid, "bname" => $bname, "phone" => $phone, "email" => $email));
+        array_push($zamowienia, array("id" => $id, "email" => $email, "kwota" => $kwota,"produkty" => $produkty, "adres" => $adres, "miasto" => $miasto, "numer" => $numer, "uwagi" => $uwagi, "status" => $status, "datazamowienia" => $datazamowienia));
     }
     mysqli_stmt_close($stmt);
-    return $rezerwacje;
-}
+    return $zamowienia;
 
-function wyswietlRezerwacje($rezerwacje) {
-    $action1 = 1;
-    $action2 = 2;
-    foreach ($rezerwacje as $rezerwacja) {
-        echo '
-        <div class="section group">
-
-        <div class="col span_1_of_12">
-            <p class="textRezerwacje">'.substr($rezerwacja["bdate"],8,2).'.'.substr($rezerwacja["bdate"],5,2).'</p>
-        </div>
-        <div class="col span_1_of_12">
-            <p class="textRezerwacje">'.substr($rezerwacja["btime"],0,5).'</p>
-        </div>
-        <div class="col span_2_of_12">
-            <p class="textRezerwacje">'.$rezerwacja["tableid"].'</p>
-        </div>
-        <div class="col span_2_of_12">
-            <p class="textRezerwacje">'.$rezerwacja["bname"].'</p>
-        </div>
-        <div class="col span_2_of_12">
-            <p class="textRezerwacje">'.$rezerwacja["phone"].'</p>
-        </div>
-        <div class="col span_2_of_12">
-            <p class="textRezerwacje">'.$rezerwacja["email"].'</p>
-        </div>
-        <div class="col span_2_of_12">
-            <a><p class="textRezerwacje" onclick="formSubmit('.$action1.','.$rezerwacja["id"].')">Edytuj dane</p></a>
-            <a><p class="textRezerwacje" onclick="formSubmit('.$action2.','.$rezerwacja["id"].')">Anuluj rezerwację</p></a>
-        </div>
-    
-        </div>';
+} 
+function pobierzZamowienieAktualne($link) {  
+    $sql = "SELECT * FROM zamowienia WHERE status = 'oczekiwane' ORDER BY datazamowienia DESC";
+    if($stmt = mysqli_prepare($link, $sql)){
+       
+        if(mysqli_stmt_execute($stmt)){
+            mysqli_stmt_store_result($stmt);  
+        } else {
+            echo "Ups! Coś poszło nie tak, spróbuj ponownie później";
+        }
+    } else {
+        echo "Coś nie tak z sql squery: " . mysqli_error($link);
     }
+    mysqli_stmt_bind_result($stmt, $id, $email, $kwota, $produkty, $adres, $miasto, $numer, $uwagi, $status, $datazamowienia);
+    $zamowienia = array();
+    while (mysqli_stmt_fetch($stmt)) {
+        array_push($zamowienia, array("id" => $id, "email" => $email, "kwota" => $kwota,"produkty" => $produkty, "adres" => $adres, "miasto" => $miasto, "numer" => $numer, "uwagi" => $uwagi, "status" => $status, "datazamowienia" => $datazamowienia));
+    }
+    mysqli_stmt_close($stmt);
+    return $zamowienia;
+
+} 
+function wyswietlZamowieniaHistoryczne($zamowienia) {
+    foreach ($zamowienia as $zamowienie) {
+        echo'<div class="section group">
+        </div>
+            
+            <div class="col span_2_of_12">
+                <p class="textRezerwacje">'.$zamowienie["datazamowienia"].'</p>
+            </div>
+            <div class="col span_2_of_12">
+                <p class="textRezerwacje">'.$zamowienie["kwota"].' zł</p>
+            </div>
+            <div class="col span_2_of_12">
+                <p class="textRezerwacje">'.$zamowienie["adres"].' '.$zamowienie["miasto"].'</p>
+            </div>
+            <div class="col span_2_of_12">
+                <p class="textRezerwacje">'.$zamowienie["produkty"].'</p>
+            </div>
+            <div class="col span_2_of_12">
+            <p class="textRezerwacje">'.$zamowienie["status"].'</p>
+            </div>
+            <div class="col span_2_of_12">
+            <a><p class="textRezerwacje" >Usuń zamówienie</p></a>
+
+            </div>
+    
+    </div>';
+    
 }
+}
+function wyswietlZamowieniaAktualne($zamowienia) {
+    foreach ($zamowienia as $zamowienie) {
+        echo'<div class="section group">
+        </div>
+            <div class="col span_2_of_12">
+                <p class="textRezerwacje">'.$zamowienie["datazamowienia"].'</p>
+            </div>
+            <div class="col span_2_of_12">
+                <p class="textRezerwacje">'.$zamowienie["kwota"].' zł</p>
+            </div>
+            <div class="col span_2_of_12">
+                <p class="textRezerwacje">'.$zamowienie["adres"].' '.$zamowienie["miasto"].'</p>
+            </div>
+            <div class="col span_2_of_12">
+                <p class="textRezerwacje">'.$zamowienie["produkty"].'</p>
+            </div>
+            <div class="col span_2_of_12">
+            <p class="textRezerwacje">'.$zamowienie["status"].'</p>
+            </div>
+            <div class="col span_2_of_12">
+            <a><p class="textRezerwacje" >Zmień status na zakończone</p></a>
+            <a><p class="textRezerwacje" >Anuluj zamówienie</p></a>
+            </div>
+    
+    </div>';
+    
+}
+}
+
+
 
 if (isset($_POST["action"])) {
     if ($_POST["action"] == 1) {
@@ -123,51 +170,81 @@ if (isset($_POST["action"])) {
 }
 ?>
 
-<section>
 
+<section>
 <div class="section group">
 
     <div class="col span_12_of_12">
-        <p class="sectionTitle">REZERWACJE</p>
+        <p class="sectionTitle">AKTUALNE ZAMÓWIENIA</p>
     </div>
-
 </div>
-
 <div class="section group">
+    </div>
+        
+        <div class="col span_2_of_12">
+            <p class="sectionTextBold">Data</p>
+        </div>
+        <div class="col span_2_of_12">
+            <p class="sectionTextBold">Kwota</p>
+        </div>
+        <div class="col span_2_of_12">
+            <p class="sectionTextBold">Adres</p>
+        </div>
+        <div class="col span_2_of_12">
+            <p class="sectionTextBold">Produkty</p>
+        </div>
+        <div class="col span_2_of_12">
+            <p class="sectionTextBold">Status</p>
+        </div>
+        <div class="col span_2_of_12">
+        </div>
+        
 
-    <div class="col span_1_of_12">
-        <p class="sectionTextBold">Data</p>
-    </div>
-    <div class="col span_1_of_12">
-        <p class="sectionTextBold">Godzina</p>
-    </div>
-    <div class="col span_2_of_12">
-        <p class="sectionTextBold">Numer stolika</p>
-    </div>
-    <div class="col span_2_of_12">
-        <p class="sectionTextBold">Imię i nazwisko</p>
-    </div>
-    <div class="col span_2_of_12">
-        <p class="sectionTextBold">Telefon</p>
-    </div>
-    <div class="col span_2_of_12">
-        <p class="sectionTextBold">Email</p>
-    </div>
-    <div class="col span_2_of_12">
-    </div>
 
 </div>
 
 <?php
-wyswietlRezerwacje(pobierzRezerwacje($link))
-?> 
+wyswietlZamowieniaAktualne(pobierzZamowienieAktualne($link))
+?>
+
 </section>
 
-<form id="form" action="rezerwacja.php" method="post">
-    <input type="hidden" name="action" id="formaction">
-    <input type="hidden" name="id" id="formid">
-</form>
+<section>
+<div class="section group">
 
+    <div class="col span_12_of_12">
+        <p class="sectionTitle">HISTORIA ZAMÓWIEŃ</p>
+    </div>
+
+</div>
+<div class="section group">
+    </div>
+       
+        <div class="col span_2_of_12">
+            <p class="sectionTextBold">Data</p>
+        </div>
+        <div class="col span_2_of_12">
+            <p class="sectionTextBold">Kwota</p>
+        </div>
+        <div class="col span_2_of_12">
+            <p class="sectionTextBold">Adres</p>
+        </div>
+        <div class="col span_2_of_12">
+            <p class="sectionTextBold">Produkty</p>
+        </div>
+        <div class="col span_2_of_12">
+            <p class="sectionTextBold">Status</p>
+        </div>
+        <div class="col span_2_of_12">
+        </div>
+
+
+</div>
+<?php
+wyswietlZamowieniaHistoryczne(pobierzZamowienieHistoryczne($link))
+?>
+</section> 
+<div class="section group"></div>
 <?php
 include("footer.php");
 mysqli_close($link);
