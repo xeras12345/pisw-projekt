@@ -249,7 +249,7 @@ wyswietlZamowieniaHistoryczne(pobierzZamowienieHistoryczne($link))
 </section> 
 <div class="section group"></div>
 
-<form id="form" action="adminzamowienia.php" method="post">
+<form id="form" action="zamowienia_potwierdzenia.php" method="post">
     <input type="hidden" name="action" id="formaction">
     <input type="hidden" name="id" id="formid">
 </form>
