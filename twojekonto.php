@@ -117,7 +117,7 @@ function wyswietlZamowieniaHistoryczne($zamowienia) {
     foreach ($zamowienia as $zamowienie) {
         echo'<div class="section group">
         </div>
-            <div class="col span_2_of_12"></div>
+            <div class="col span_1_of_12"></div>
             <div class="col span_2_of_12">
                 <p class="textRezerwacje">'.$zamowienie["datazamowienia"].'</p>
             </div>
@@ -131,7 +131,9 @@ function wyswietlZamowieniaHistoryczne($zamowienia) {
                 <p class="textRezerwacje">'.$zamowienie["produkty"].'</p>
             </div>
             <div class="col span_2_of_12">
-        </div>
+            <p class="textRezerwacje">'.$zamowienie["status"].'</p>
+            </div>
+            <div class="col span_1_of_12"></div>
     
     </div>';
     
@@ -141,7 +143,7 @@ function wyswietlZamowieniaAktualne($zamowienia) {
     foreach ($zamowienia as $zamowienie) {
         echo'<div class="section group">
         </div>
-            <div class="col span_2_of_12"></div>
+            <div class="col span_1_of_12"></div>
             <div class="col span_2_of_12">
                 <p class="textRezerwacje">'.$zamowienie["datazamowienia"].'</p>
             </div>
@@ -155,7 +157,9 @@ function wyswietlZamowieniaAktualne($zamowienia) {
                 <p class="textRezerwacje">'.$zamowienie["produkty"].'</p>
             </div>
             <div class="col span_2_of_12">
-        </div>
+            <p class="textRezerwacje">'.$zamowienie["status"].'</p>
+            </div>
+            <div class="col span_1_of_12"></div>
     
     </div>';
     
@@ -291,7 +295,7 @@ wyswietlRezerwacje(pobierzRezerwacje($link))
 </div>
 <div class="section group">
     </div>
-        <div class="col span_2_of_12"></div>
+        <div class="col span_1_of_12"></div>
         <div class="col span_2_of_12">
             <p class="sectionTextBold">Data</p>
         </div>
@@ -305,7 +309,9 @@ wyswietlRezerwacje(pobierzRezerwacje($link))
             <p class="sectionTextBold">Produkty</p>
         </div>
         <div class="col span_2_of_12">
-    </div>
+            <p class="sectionTextBold">Status zamówienia</p>
+        </div>
+        <div class="col span_1_of_12"></div>
 
 </div>
 <?php
@@ -322,7 +328,7 @@ wyswietlZamowieniaAktualne(pobierzZamowienieAktualne($link))
 </div>
 <div class="section group">
     </div>
-        <div class="col span_2_of_12"></div>
+        <div class="col span_1_of_12"></div>
         <div class="col span_2_of_12">
             <p class="sectionTextBold">Data</p>
         </div>
@@ -336,7 +342,9 @@ wyswietlZamowieniaAktualne(pobierzZamowienieAktualne($link))
             <p class="sectionTextBold">Produkty</p>
         </div>
         <div class="col span_2_of_12">
-    </div>
+            <p class="sectionTextBold">Status zamówienia</p>
+        </div>
+        <div class="col span_1_of_12"></div>
 
 </div>
 <?php

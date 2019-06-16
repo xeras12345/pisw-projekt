@@ -12,10 +12,10 @@
         </div>
         <div class="col span_9_of_12">
             <ul id="menulist">
-                <li><a href="home.php">STRONA GŁÓWNA</a></li>
+                <li onclick="usun();"><a href="home.php">STRONA GŁÓWNA</a></li>
                 <li onclick="usun();"><a href="zamow_online_bez_logowania.php">ZAMÓW ONLINE</a></li>
-                <li><a href="rezerwacje.php">REZERWACJE</a></li>
-                <li><a><span id="log" onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></a></li>
+                <li onclick="usun();"><a href="rezerwacje.php">REZERWACJE</a></li>
+                <li onclick="usun();"><a><span id="log" onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></a></li>
             </ul>
         </div>
     </div> 
