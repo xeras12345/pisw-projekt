@@ -99,6 +99,8 @@ if(!empty($_SESSION["cart"])){
           <p  class="textMenu" style="font-weight: bold;">Email: <?php wyswietlZamowienia(pobierzZamowienie($link))?></p>
           <p  class="textMenu" style="font-weight: bold;">Numer telefonu: <?php wyswietlZamowienia4(pobierzZamowienie($link))?></p>
           <p  class="textMenu" style="font-weight: bold;">Kwota przy odbiorze: <?php wyswietlZamowienia5(pobierzZamowienie($link))?> zł</p>
+          <p  class="textMenu" style="font-weight: bold;">Oczekiwany czas realizacji to: 45min-1h</p>
+
     </div>
     <div class="col span_4_of_12"></div>
 

@@ -52,15 +52,12 @@
                         <?php $produkty = $value["item_name"];?>
 
                         <div class="col span_1_of_12"></div>
-                        <div class="col span_2_of_12"><p class="textMenu"><?php echo $value["item_name"];
-                            $outall = ''.$outall.$value["item_name"].'/';?></p></div>
-                        <div class="col span_1_of_12"></div>     
+                        <div class="col span_3_of_12"><p class="textMenu"><?php echo $value["item_name"];
+                            $outall = ''.$outall.$value["item_name"].'/';?></p></div>    
                         <div class="col span_2_of_12"><p class="textMenu"><?php echo $value["item_quantity"]; ?></p></div>
-        
-                        <div class="col span_2_of_12"><p class="textMenu"><?php echo $value["product_price"]; ?> zł</p></div>
-                        <div class="col span_1_of_12"></div>
-                        <div class="col span_2_of_12"><p class="textMenu"><?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?> zł</p></div>
-                        <div class="col span_1_of_12"></div>
+                        <div class="col span_3_of_12"><p class="textMenu"><?php echo $value["product_price"]; ?> zł</p></div>
+                        <div class="col span_3_of_12"><p class="textMenu"><?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?> zł</p></div>
+    
 
                             <a href="zamowonline.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span id="click"></span></a>
                         
@@ -121,7 +118,7 @@
                     <div class="section group">
                         <div class="col span_12_of_12">
                         <div class="ikonka"><i class="fas fa-phone-alt"></i></div>
-                        <div class="input_koszyk"><input type="text" name="numer" pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}" placeholder="XXX-XXX-XXX*" required /></div>
+                        <div class="input_koszyk"><input type="text" name="numer" id="tbNum" onkeyup="dodajMyslnikTel(this);" placeholder="XXX-XXX-XXX*" maxlength="11" required /></div>
                         </div>
                     </div>
 
@@ -132,7 +129,7 @@
                             <legend> Rodzaj dostawy </legend>
                             
                             <div><label><input type="radio" value="1" name="dostawa" id="osobisty" required onclick="sprawdzenie();"> Odbiór osobisty</label></div>
-                            <div><label><input type="radio" value="2" name="dostawa" id="dom" required onclick="sprawdzenie();"> Do domu</label></div>
+                            <div><label><input type="radio" value="2" name="dostawa" id="dom" required onclick="sprawdzenie();"> Do domu (darmowa dostawa!)</label></div>
                         </div>
                     </div>
                     <div class="section group">
@@ -168,7 +165,7 @@
                     <div class="section group">
                         <div class="col span_12_of_12">
                         <div class="ikonka"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="input_koszyk"><input type="text" name="miasto" id="kod" pattern="[0-9]{2}-[0-9]{3}" placeholder="Kod pocztowy(XX-XXX)*" required /></div>
+                        <div class="input_koszyk"><input type="text" name="miasto" id="kod"  onkeyup="dodajMyslnikKod(this);" pattern="[0-9]{2}-[0-9]{3}" placeholder="Kod pocztowy(XX-XXX)*" maxlength="6" required /></div>
                         </div>
                     </div>
                     <div class="section group">
@@ -249,13 +246,28 @@
    function adres_uzytkownika()
    {
        document.getElementById("adres").value='';
-       document.getElementById("adres").disabled = false;
+       document.getElementById("adres").readOnly = false;
        document.getElementById("miasto").value='';
-       document.getElementById("miasto").disabled = false;
+       document.getElementById("miasto").readOnly = false;
        document.getElementById("kod").value='';
-       document.getElementById("kod").disabled = false;
+       document.getElementById("kod").readOnly = false;
    }
 
+   function dodajMyslnikTel (element) {
+    	let ele = document.getElementById(element.id);
+        ele = ele.value.split('-').join('');   
+
+        let finalVal = ele.match(/.{1,3}/g).join('-');
+        document.getElementById(element.id).value = finalVal;
+    }
+    
+   function dodajMyslnikKod (element) {
+    	let ele = document.getElementById(element.id);
+        ele = ele.value.split('-').join('');  // Remove dash (-) if mistakenly entered.
+        let finalVal = ele.match(/^\d{2}(-\d{4})?(?!-)$/).join('-');
+        document.getElementById(element.id).value = finalVal;
+    }
+ 
  
 
  
@@ -268,7 +280,7 @@
 
     <?php
         require_once "connect.php";
-        $date = date('Y-m-d');
+        $date = date('Y-m-d H:i:s');
         $email = isset($_POST['email']) ? $_POST['email'] : '';
         $adres = isset($_POST['adres']) ? $_POST['adres'] : '';
         $miasto = isset($_POST['miasto']) ? $_POST['miasto'] : '';

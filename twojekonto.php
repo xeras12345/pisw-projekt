@@ -71,7 +71,7 @@ function pobierzRezerwacje($link) {
 }
 function pobierzZamowienieHistoryczne($link) {  
     $sql = "SELECT * FROM zamowienia WHERE 
-    email = ? AND status =1 ORDER BY datazamowienia DESC";
+    email = ? AND status ='zakończone' ORDER BY datazamowienia DESC";
     if($stmt = mysqli_prepare($link, $sql)){
         mysqli_stmt_bind_param($stmt, "s", $_SESSION["email1"]);
         if(mysqli_stmt_execute($stmt)){
@@ -93,7 +93,7 @@ function pobierzZamowienieHistoryczne($link) {
 } 
 function pobierzZamowienieAktualne($link) {  
     $sql = "SELECT * FROM zamowienia WHERE 
-    email = ? AND status =0 ORDER BY datazamowienia DESC LIMIT 1";
+    email = ? AND status ='oczekiwane' ORDER BY datazamowienia DESC";
     if($stmt = mysqli_prepare($link, $sql)){
         mysqli_stmt_bind_param($stmt, "s", $_SESSION["email1"]);
         if(mysqli_stmt_execute($stmt)){
