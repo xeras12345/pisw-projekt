@@ -18,7 +18,11 @@
 <body>
  
  
-<?php include("header.php"); ?>
+<?php include("header.php"); 
+      include("wymaganylogin.php");
+      require_once "connect.php";
+      $link->query("SET NAMES 'utf8'");?>
+
 
 
 <div class="section"> 
@@ -59,7 +63,7 @@
                         <div class="col span_3_of_12"><p class="textMenu"><?php echo number_format($value["item_quantity"] * $value["product_price"], 2); ?> zł</p></div>
     
 
-                            <a href="zamowonline.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span id="click"></span></a>
+                            <a href="koszyk.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span id="click"></span></a>
                         
                         <?php
                         $total = $total + ($value["item_quantity"] * $value["product_price"]);
@@ -96,7 +100,7 @@
     <?php 
         if(isset($_SESSION["loggedin"])){
 
-            echo'<form id="myForm" action="koszyk.php" method="post">
+            echo'<form id="myForm" onsubmit="usun();" action="koszyk.php" method="post">
             <div class="section group">
 
                 <p class="sectionTitle">Twoje Dane:<p>
@@ -195,7 +199,8 @@
                         <div class="col span_12_of_12">
                         <p class="sectionTextBold textMenu" style="text-align:center;">Czy na pewno chcesz złożyć zamówienie?</p>
                         <div>
-                            <input id="submitform" name="submitform" type="submit"  class="btn" value="Tak" onclick="usun();">
+                            <input id="submitform" name="submitform" type="submit"  class="btn" value="Tak" >
+                            <a href="zamowonline.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span id="click"></span></a>
                             <input type="button"  class="btn" value="Nie" onclick="document.getElementById('okno_potwierdzajace').style.display='none'">
                         </div>
         </div>
@@ -215,6 +220,9 @@
 
     </div>
     </section>  
+
+
+
     <script>
    function usun()
    {
@@ -343,6 +351,13 @@
     ?>
 </div>
     
+<script>
+   function usun()
+   {
+    document.getElementById('click').click();
+   }
+ </script>
+
 
 
 

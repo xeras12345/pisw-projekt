@@ -16,11 +16,13 @@
 
 <body>
 
+
 <?php
 include("header.php");
 include("wymaganylogin.php");
 require_once "connect.php";
-$link->query("SET NAMES 'utf8'");
+$link->query('SET NAMES utf8');
+$link->query('SET CHARACTER_SET utf8_unicode_ci');
 
 function czyAdmin($link) {
     $sql = 'SELECT id, email, isadmin FROM users WHERE email = ?';
@@ -352,6 +354,7 @@ wyswietlZamowieniaHistoryczne(pobierzZamowienieHistoryczne($link))
 ?>
 </section> 
 <div class="section group"></div>
+
 <?php
 include("footer.php");
 mysqli_close($link);

@@ -17,7 +17,10 @@
 
 <body>
 
-<?php include("header.php"); ?>
+<?php include("header.php");
+$link->query('SET NAMES utf8');
+$link->query('SET CHARACTER_SET utf8_unicode_ci'); ?>
+
 
 <?php
     if (isset($_POST["name"])) {

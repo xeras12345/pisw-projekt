@@ -17,9 +17,12 @@
 
 <body>
 
+
 <?php
 include("header.php");
 require_once "connect.php";
+$link->query('SET NAMES utf8');
+$link->query('SET CHARACTER_SET utf8_unicode_ci');
 
 function pobierzRezerwacje($link) { 
     $sql = "SELECT * FROM bookings WHERE DATE(bdate) BETWEEN DATE(CURRENT_DATE()) AND DATE(CURRENT_DATE() + INTERVAL 7 DAY)

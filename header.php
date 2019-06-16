@@ -12,22 +12,15 @@
         </div>
         <div class="col span_9_of_12">
             <ul id="menulist">
-                <li onclick="usun();"><a href="home.php">STRONA GŁÓWNA</a></li>
-                <li onclick="usun();"><a href="zamow_online_bez_logowania.php">ZAMÓW ONLINE</a></li>
-                <li onclick="usun();"><a href="rezerwacje.php">REZERWACJE</a></li>
-                <li onclick="usun();"><a><span id="log" onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></a></li>
+                <li><a href="home.php">STRONA GŁÓWNA</a></li>
+                <li><a href="zamow_online_bez_logowania.php">ZAMÓW ONLINE</a></li>
+                <li><a href="rezerwacje.php">REZERWACJE</a></li>
+                <li><a><span id="log" onclick="document.getElementById('modal-wrapper').style.display='block'">LOGOWANIE</span></a></li>
             </ul>
         </div>
     </div> 
-    <?php 
-if(!empty($_SESSION["cart"])){
-                $outall = '';
-                foreach ($_SESSION["cart"] as $key => $value) {
-                  echo'<a href="zamowonline.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span id="click"></span></a>';
-                }
-              }
 
-?>
+
 
 </nav>
 
@@ -616,5 +609,6 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 
 
 </div>
+
 
 </section>

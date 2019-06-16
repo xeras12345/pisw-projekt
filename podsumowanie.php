@@ -14,12 +14,23 @@
  
 </head>
  
-<body>
+<body onload="usun();">
 
 <?php include("header.php"); 
       include("wymaganylogin.php");
       require_once "connect.php";
       $link->query("SET NAMES 'utf8'");
+?>
+<?php
+if (isset($_GET["action"])){
+  if ($_GET["action"] == "delete"){
+      foreach ($_SESSION["cart"] as $keys => $value){
+          
+              unset($_SESSION["cart"][$keys]);
+
+          }
+      }
+  }
 ?>
 <?php
 function pobierzZamowienie($link) {  
@@ -80,7 +91,7 @@ function wyswietlZamowienia5($zamowienia) {
 if(!empty($_SESSION["cart"])){
                 $outall = '';
                 foreach ($_SESSION["cart"] as $key => $value) {
-                  echo'<a href="zamowonline.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span id="click"></span></a>';
+                  echo'<a href="podsumowanie.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span id="click"></span></a>';
                 }
               }
 

@@ -19,6 +19,7 @@
 <?php
 include("header.php");
 include("wymaganyadmin.php");
+$link->query("SET NAMES `utf8` COLLATE `utf8_polish_ci`");
 
 function pobierzDaniazKategorii($kategoria, $link) { 
     $sql = 'SELECT * FROM menu WHERE kategoria = ?';

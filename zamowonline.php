@@ -27,7 +27,8 @@
     
     include("header.php");
     require_once "connect.php";
-    $link->query("SET NAMES 'utf8'"); //ustawienie kodowania
+    $link->query('SET NAMES utf8');
+    $link->query('SET CHARACTER_SET utf8_unicode_ci'); //ustawienie kodowania
     if (isset($_POST["add"])){
         if (isset($_SESSION["cart"])){
             $item_array_id = array_column($_SESSION["cart"],"product_id");
@@ -91,7 +92,7 @@
                     ?>          <div class="section group">
                                 <form method="post" action="zamowonline.php?action=add&id=<?php echo $row["id"]; ?>">
                                 <div class="col span_2_of_12"></div>
-                                <div class="col span_4_of_12" ><h5 class="sectionTextBold textMenu"><?php echo strtoupper($row["nazwa"]); ?></h5>
+                                <div class="col span_4_of_12" ><h5 class="sectionTextBold textMenu"><?php echo mb_strtoupper($row["nazwa"],"UTF-8"); ?></h5>
                                 <p class="textMenu"><?php echo $row["sklad"]; ?></p></div>
                                 <div class="col span_2_of_12"><h5><?php echo $row["cena"]; ?>zł</h5></div>
                                 <div class="col span_1_of_12" style="margin-top:35px"><input type="number" name="quantity" value="1" min="1" max="30"></div>
@@ -126,7 +127,7 @@
                     ?>          <div class="section group">
                                 <form method="post" action="zamowonline.php?action=add&id=<?php echo $row["id"]; ?>">
                                 <div class="col span_2_of_12"></div>
-                                <div class="col span_4_of_12" ><h5 class="sectionTextBold textMenu"><?php echo strtoupper($row["nazwa"]); ?></h5>
+                                <div class="col span_4_of_12" ><h5 class="sectionTextBold textMenu"><?php echo mb_strtoupper($row["nazwa"],"UTF-8"); ?></h5>
                                 <p class="textMenu"><?php echo $row["sklad"]; ?></p></div>
                                 <div class="col span_2_of_12"><h5><?php echo $row["cena"]; ?>zł</h5></div>
                                 <div class="col span_1_of_12" style="margin-top:35px"><input type="number" name="quantity" value="1" min="1" max="30"></div>
@@ -162,7 +163,7 @@
                     ?>          <div class="section group">
                                 <form id="myForm" method="post" action="zamowonline.php?action=add&id=<?php echo $row["id"]; ?>">
                                 <div class="col span_2_of_12"></div>
-                                <div class="col span_4_of_12" ><h5 class="sectionTextBold textMenu"><?php echo strtoupper($row["nazwa"]); ?></h5>
+                                <div class="col span_4_of_12" ><h5 class="sectionTextBold textMenu"><?php echo mb_strtoupper($row["nazwa"],"UTF-8"); ?></h5>
                                 <p class="textMenu"><?php echo $row["sklad"]; ?></p></div>
                                 <div class="col span_2_of_12"><h5><?php echo $row["cena"]; ?>zł</h5></div>
                                 <div class="col span_1_of_12" style="margin-top:35px"><input type="number" name="quantity" value="1" min="1" max="30"></div>
@@ -215,11 +216,12 @@
     <div class="box__description">
       <p style="text-align:center">Kwota zamówienia:</p>
       <div>
- 
-      <form>
+                   
+      <form id="suma">
       <p style="text-align:center">Suma:<?php echo number_format($total, 2); ?> zł </p></br>
       <input onclick="location.href='koszyk.php';" type="submit" class="btnkoszyk" value="Koszyk">
       <a href="zamowonline.php?action=delete&id=<?php echo $value["product_id"]; ?>"><span>Wyczyść</span></a>
+
     </form>
 </div>
     </div>
@@ -227,6 +229,7 @@
 </div>
             </form>
         </div>
+
  
 
    
