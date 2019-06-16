@@ -128,8 +128,8 @@
 
                             <legend> Rodzaj dostawy </legend>
                             
-                            <div><label><input type="radio" value="1" name="dostawa" id="osobisty" required onclick="sprawdzenie();"> Odbiór osobisty</label></div>
-                            <div><label><input type="radio" value="2" name="dostawa" id="dom" required onclick="sprawdzenie();"> Do domu (darmowa dostawa!)</label></div>
+                            <div><label><input type="radio" value="dostawa1" name="dostawa" id="osobisty" required onclick="sprawdzenie();"> Odbiór osobisty</label></div>
+                            <div><label><input type="radio" value="dostawa2" name="dostawa" id="dom" required onclick="sprawdzenie();"> Do domu (darmowa dostawa!)</label></div>
                         </div>
                     </div>
                     <div class="section group">
@@ -281,13 +281,39 @@
     <?php
         require_once "connect.php";
         $date = date('Y-m-d H:i:s');
+        $answer = isset($_POST['dostawa']) ? $_POST['dostawa'] : '';
         $email = isset($_POST['email']) ? $_POST['email'] : '';
         $adres = isset($_POST['adres']) ? $_POST['adres'] : '';
         $miasto = isset($_POST['miasto']) ? $_POST['miasto'] : '';
         $numer = isset($_POST['numer']) ? $_POST['numer'] : '';
         $uwagi = isset($_POST['uwagi']) ? $_POST['uwagi'] : '';
         
-        if (isset($_POST['submitform']))
+        if (isset($_POST['submitform']) && ($answer=="dostawa1"))
+        {   
+
+            $link->query("SET NAMES 'utf8'");
+            if ($link->connect_error) {
+                die("Connection failed: " . $link->connect_error);
+            } 
+
+            $sql = "INSERT INTO zamowienia (email, kwota, produkty, adres, miasto, numer, uwagi, status, datazamowienia)
+            VALUES ('$email', $kwota, '$outall','Wrocław ul.Kuźnicza 15 (Odbiór osobisty)','$miasto','$numer','$uwagi','oczekiwane','$date')";
+
+            if ($link->query($sql) === TRUE) {
+                
+            } else {
+                echo "Error: " . $sql . "<br>" . $link->error;
+            }
+
+
+            $link->close();
+            ?>
+            <script>
+                window.location = "podsumowanie.php";
+            </script>
+
+            <?php
+        } else if (isset($_POST['submitform']) && ($answer=="dostawa2"))
         {   
 
             $link->query("SET NAMES 'utf8'");
@@ -313,8 +339,7 @@
 
             <?php
         }
-
-
+    
     ?>
 </div>
     
