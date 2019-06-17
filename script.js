@@ -61,3 +61,6 @@ function usun()
 {
  document.getElementById('click').click();
 }
+
+
+

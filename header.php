@@ -45,6 +45,7 @@ session_start();
 
 // Include config file
 require_once "connect.php";
+$link->query("SET NAMES 'utf8'");
 
 // Define variables and initialize with empty values
 $email1 = $password1 = "";
@@ -473,12 +474,16 @@ if(empty($email_err) && empty($password_err) && empty($confirm_password_err)){
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
             // Redirect to login page
-            $to_email = $_POST['email'] ;
-            $subject = 'Potwierdzenie Rejestracji - Założyłeś nowe konto na stronie LOIGNON.PL';
-            $message = 'Dziękujemy za rejestracje i zapraszamy do korzystania z naszej cudownej strony!';
-            $headers = 'Od: Loignon';
-            $headers .= 'Content-Type: text/html; charset=utf-8';
-            mail($to_email,$subject,$message,$headers);
+        
+            $temat='Potwierdzenie rejestracji - Restauracja LOIGNON.PL';
+            $text='Witamy w gronie użytkowników! dziękujemy za rejestrację i zapraszamy do naszego lokalu by uczcić to pysznym obiadem!';
+            $header = 'Tekst próbny';
+            $header .= "Content-typ: text/html; charset=utf-8r\n"; 
+            $header .= "Content-Transfer-Encodin: 8bitr\n";
+            
+
+            mail($email, $temat, $text, $header);
+ 
             ?>
             <div id="modal-wrapper5" class="modal5">
 
