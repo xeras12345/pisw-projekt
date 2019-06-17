@@ -1,154 +1,154 @@
 #dateblocks {
-	width: 80%;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .dateblock {
-	display: inline-block;
-	border-color: black;
-	border-style: groove;
-	padding: 5px;
-	margin: 5px;
+  display: inline-block;
+  border-color: black;
+  border-style: groove;
+  padding: 5px;
+  margin: 5px;
 }
 
 .dateblock:hover {
-	cursor: pointer;
-	opacity: 0.7;
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 .dateBlockChosed {
-	background: #eeeeee;
+  background: #eeeeee;
 }
 
-#timeblocks  {
-	width: 200px;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+#timeblocks {
+  width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .timeblock {
-	display: inline-block;
-	padding: 5px;
-	margin: 5px;
+  display: inline-block;
+  padding: 5px;
+  margin: 5px;
 }
 
 .dayText {
-	text-align: center;
-	letter-spacing: 1px;
-	margin: 2px;
+  text-align: center;
+  letter-spacing: 1px;
+  margin: 2px;
 }
 
 .dateText {
-	text-align: center;
-	letter-spacing: 1px;
-	margin: 2px;
+  text-align: center;
+  letter-spacing: 1px;
+  margin: 2px;
 }
 
 .timeText {
-	text-align: center;
-	letter-spacing: 1px;
-	margin: 2px;
-	font-size: 200%;
+  text-align: center;
+  letter-spacing: 1px;
+  margin: 2px;
+  font-size: 200%;
 }
 
-.timeIcon{
-	width: 20px;
+.timeIcon {
+  width: 20px;
 }
 
 .timeIcon:hover {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 #plan {
-    background-image: url("img/planrestauracji.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100%;
-	max-width: 600px;
-	max-height: 800px;
-	height: 800px;
-	margin-left: auto;
-	margin-right: auto;
+  background-image: url("img/planrestauracji.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  max-width: 600px;
+  max-height: 800px;
+  height: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .responsiveImageRestaurant {
-	height: auto;
-	width: auto;
-	max-width: 100%;
-	padding-left: 0%;
-	padding-right: 0%;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+  height: auto;
+  width: auto;
+  max-width: 100%;
+  padding-left: 0%;
+  padding-right: 0%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .responsiveImageTableSmall {
-	height: auto;
-	width: auto;
-	max-width: 130px;
-	padding-left: 0%;
-	padding-right: 0%;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+  height: auto;
+  width: auto;
+  max-width: 130px;
+  padding-left: 0%;
+  padding-right: 0%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .responsiveImageTableBig {
-	height: auto;
-	width: auto;
-	max-width: 230px;;
-	padding-left: 0%;
-	padding-right: 0%;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+  height: auto;
+  width: auto;
+  max-width: 230px;
+  padding-left: 0%;
+  padding-right: 0%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .activeImage:hover {
-	cursor: pointer;
-	opacity: 0.7;
+  cursor: pointer;
+  opacity: 0.7;
 }
 
 #table1 {
-	margin-top: 100px;
-	margin-right: 150px;
+  margin-top: 100px;
+  margin-right: 150px;
 }
 
 #table2 {
-	margin-top: 20px;
-	margin-left: 170px;
-	float: left;
+  margin-top: 20px;
+  margin-left: 170px;
+  float: left;
 }
 
 #table3 {
-	margin-top: 20px;
-	margin-right: 60px;
-	float: none;
+  margin-top: 20px;
+  margin-right: 60px;
+  float: none;
 }
 
 #table4 {
-	margin-top: 30px;
-	margin-left: 5px;
-	float: left;
+  margin-top: 30px;
+  margin-left: 5px;
+  float: left;
 }
 
 #table5 {
-	margin-top: 40px;
-	margin-right: 50px;
-	float: none;
+  margin-top: 40px;
+  margin-right: 50px;
+  float: none;
 }
 
 #table6 {
-	margin-top: 40px;
-	margin-left: -130px;
-	float: left;
+  margin-top: 40px;
+  margin-left: -130px;
+  float: left;
 }
 
 #table7 {
-	margin-top: 50px;
-	margin-right: 50px;
-	float: none;
+  margin-top: 50px;
+  margin-right: 50px;
+  float: none;
 }

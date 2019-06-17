@@ -1,11 +1,11 @@
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Lato', sans-serif;
-    background-image: url(img/tlo_login.jpg);
-    background-size: cover;
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", sans-serif;
+  background-image: url(img/tlo_login.jpg);
+  background-size: cover;
 }
-.textbox{
+.textbox {
   width: 50%;
   margin: 0 auto;
   overflow: hidden;
@@ -14,7 +14,7 @@ body {
   border-bottom: 1px solid black;
 }
 
-.textbox input{
+.textbox input {
   border: none;
   outline: none;
   background: none;
@@ -24,7 +24,7 @@ body {
   float: left;
   margin: 0 10px;
 }
-.btn{
+.btn {
   width: 50%;
   background: none;
   border: 2px solid black;
@@ -36,23 +36,22 @@ body {
 }
 
 .container {
-    text-align: center;
-    width: 40%;
-    height: 300px;
-    background: white;
-    margin: 180px auto;
-    border: 2px solid #fff;
-    box-shadow: 0 15px 40px rgba(0,0,0,.5);
-    margin-bottom: 10px;
+  text-align: center;
+  width: 40%;
+  height: 300px;
+  background: white;
+  margin: 180px auto;
+  border: 2px solid #fff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
 }
 
-
 .container2 {
-    text-align: center;
-    width: 40%;
-    height: 400px;
-    background: white;
-    margin: 150px auto;
-    border: 2px solid #fff;
-    box-shadow: 0 15px 40px rgba(0,0,0,.5);
+  text-align: center;
+  width: 40%;
+  height: 400px;
+  background: white;
+  margin: 150px auto;
+  border: 2px solid #fff;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
 }
