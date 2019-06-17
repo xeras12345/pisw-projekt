@@ -106,7 +106,7 @@ if(!empty($_SESSION["cart"])){
  
     <div class="col span_4_of_12"></div>
     <div class="col span_4_of_12">
-          <p  class="textMenu" style="font-weight: bold;">Adres: <?php wyswietlZamowienia2(pobierzZamowienie($link))?> </p>
+          <p  class="textMenu" style="font-weight: bold;">Adres: <?php wyswietlZamowienia3(pobierzZamowienie($link))?> <?php wyswietlZamowienia2(pobierzZamowienie($link))?> </p>
           <p  class="textMenu" style="font-weight: bold;">Email: <?php wyswietlZamowienia(pobierzZamowienie($link))?></p>
           <p  class="textMenu" style="font-weight: bold;">Numer telefonu: <?php wyswietlZamowienia4(pobierzZamowienie($link))?></p>
           <p  class="textMenu" style="font-weight: bold;">Kwota przy odbiorze: <?php wyswietlZamowienia5(pobierzZamowienie($link))?> zł</p>

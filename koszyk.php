@@ -169,7 +169,7 @@
                     <div class="section group">
                         <div class="col span_12_of_12">
                         <div class="ikonka"><i class="fas fa-map-marker-alt"></i></div>
-                        <div class="input_koszyk"><input type="text" name="miasto" id="kod"  onkeyup="dodajMyslnikKod(this);" pattern="[0-9]{2}-[0-9]{3}" placeholder="Kod pocztowy(XX-XXX)*" maxlength="6" required /></div>
+                        <div class="input_koszyk"><input type="text" name="kod" id="kod"  onkeyup="dodajMyslnikKod(this);" pattern="[0-9]{2}-[0-9]{3}" placeholder="Kod pocztowy(XX-XXX)*" maxlength="6" required /></div>
                         </div>
                     </div>
                     <div class="section group">
@@ -307,6 +307,7 @@
             $sql = "INSERT INTO zamowienia (email, kwota, produkty, adres, miasto, numer, uwagi, status, datazamowienia)
             VALUES ('$email', $kwota, '$outall','Wrocław ul.Kuźnicza 15 (Odbiór osobisty)','$miasto','$numer','$uwagi','oczekiwane','$date')";
 
+
             if ($link->query($sql) === TRUE) {
                 
             } else {
@@ -319,6 +320,35 @@
             <script>
                 window.location = "podsumowanie.php";
             </script>
+            <?php
+                $temat='Potwierdzenie złożenia zamówienia - Restauracja LOIGNON.PL';
+                $text="Witamy, dziękujemy za złożenie zamówienia na naszej stronie. 
+                
+                Szczegóły zamówienia:
+    
+                    Odbiór: Wrocław ul. Kuźnicza 15 (Odbiór osobisty)
+                    Czas oczekiwania: 45min-1h
+                    Kwota do zapłaty przy odbiorze: $kwota zł
+                    
+                    
+    
+    
+    
+    
+                    Kontakt: +48 693527211
+                    E-mail: restauracja.loignon@gmail.com
+                    Pozdrawiamy!
+    
+                    Ta wiadomość jest automatyczna, prosimy na nią nie odpowiadać."
+                    ;
+                $header = 'Tekst próbny';
+                $header .= "Content-typ: text/html; charset=utf-8r\n"; 
+                $header .= "Content-Transfer-Encodin: 8bitr\n";
+    
+    
+                mail($email, $temat, $text, $header);
+            ?>
+            
 
             <?php
         } else if (isset($_POST['submitform']) && ($answer=="dostawa2"))
@@ -344,6 +374,34 @@
             <script>
                 window.location = "podsumowanie.php";
             </script>
+                        <?php
+                $temat='Potwierdzenie złożenia zamówienia - Restauracja LOIGNON.PL';
+                $text="Witamy, dziękujemy za złożenie zamówienia na naszej stronie. 
+                
+                Szczegóły zamówienia:
+    
+                    Odbiór: $miasto $adres
+                    Czas oczekiwania: 45min-1h
+                    Kwota do zapłaty przy odbiorze: $kwota zł
+                    
+                    
+    
+    
+    
+    
+                    Kontakt: +48 693527211
+                    E-mail: restauracja.loignon@gmail.com
+                    Pozdrawiamy!
+    
+                    Ta wiadomość jest automatyczna, prosimy na nią nie odpowiadać."
+                    ;
+                $header = 'Tekst próbny';
+                $header .= "Content-typ: text/html; charset=utf-8r\n"; 
+                $header .= "Content-Transfer-Encodin: 8bitr\n";
+    
+    
+                mail($email, $temat, $text, $header);
+            ?>
 
             <?php
         }
