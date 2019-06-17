@@ -83,7 +83,7 @@
  
     </div>
         <?php
-            $query = "SELECT * FROM menu WHERE `kategoria` = 'przystawki' ORDER BY id ASC";
+            $query = "SELECT * FROM menu WHERE `kategoria` = 'przystawki' AND dostepnosc = 1 ORDER BY id ASC";
             $result = mysqli_query($link,$query);
             if(mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
@@ -118,7 +118,7 @@
  
     </div>
         <?php
-            $query = "SELECT * FROM menu WHERE `kategoria` = 'zupy' ORDER BY id ASC";
+            $query = "SELECT * FROM menu WHERE `kategoria` = 'zupy' AND dostepnosc = 1 ORDER BY id ASC";
             $result = mysqli_query($link,$query);
             if(mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {
@@ -154,7 +154,7 @@
  
     </div>
         <?php
-            $query = "SELECT * FROM menu WHERE `kategoria` = 'dania' ORDER BY id ASC";
+            $query = "SELECT * FROM menu WHERE `kategoria` = 'dania' AND dostepnosc = 1 ORDER BY id ASC";
             $result = mysqli_query($link,$query);
             if(mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result)) {

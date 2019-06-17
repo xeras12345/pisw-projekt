@@ -275,6 +275,7 @@ if (isset($_POST["action"])) {
         <p class="sectionTextBold">Telefon</p>
     </div>
     <div class="col span_2_of_12">
+        <p class="sectionTextBold">Akcja</p>
     </div>
 
 </div>
